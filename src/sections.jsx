@@ -161,9 +161,23 @@ const AREAS = [
 ];
 
 function Areas() {
-  const iconMap = {
-    IconBriefcase, IconShield, IconScales, IconHearth, IconGavel,
+  const iconMap = { IconBriefcase, IconShield, IconScales, IconHearth, IconGavel };
+  const [current, setCurrent] = React.useState(0);
+  const total = AREAS.length;
+
+  const prev = () => setCurrent((c) => (c - 1 + total) % total);
+  const next = () => setCurrent((c) => (c + 1) % total);
+
+  // Touch/swipe support
+  const touchStart = React.useRef(null);
+  const onTouchStart = (e) => { touchStart.current = e.touches[0].clientX; };
+  const onTouchEnd = (e) => {
+    if (touchStart.current === null) return;
+    const diff = touchStart.current - e.changedTouches[0].clientX;
+    if (Math.abs(diff) > 40) diff > 0 ? next() : prev();
+    touchStart.current = null;
   };
+
   return (
     <section className="section section-areas-bold" id="areas">
       <div className="container">
@@ -183,33 +197,46 @@ function Areas() {
             </p>
           </div>
         </div>
-      </div>
-      <div className="areas-rail-wrap">
-        <div className="areas-rail">
-          {AREAS.map((a, i) => {
-            const Icon = iconMap[a.icon];
-            return (
-              <article className="area-bold" key={a.title}>
-                <div className="area-bold-num">{String(i + 1).padStart(2, '0')}</div>
-                <div className="area-bold-glyph"><Icon /></div>
-                <h3>{a.title}</h3>
-                <p>{a.description}</p>
-                <span className="area-bold-link">
-                  Saber mais <IconArrowUpRight style={{ width: 12, height: 12 }} />
-                </span>
-              </article>
-            );
-          })}
-          <div className="area-bold-end">
-            <p>
-              Outra demanda? Mande sua mensagem — analiso pessoalmente e
-              respondo em até 24 horas.
-            </p>
-            <a className="btn btn-ghost" href="#contato">
-              Falar comigo <IconArrowRight />
-            </a>
+
+        {/* Carrossel */}
+        <div className="carousel" onTouchStart={onTouchStart} onTouchEnd={onTouchEnd}>
+          <div className="carousel-track" style={{ transform: `translateX(${-current * 100}%)` }}>
+            {AREAS.map((a, i) => {
+              const Icon = iconMap[a.icon];
+              return (
+                <article className="carousel-slide area-bold" key={a.title}>
+                  <div className="area-bold-num">{String(i + 1).padStart(2, '0')}</div>
+                  <div className="area-bold-glyph"><Icon /></div>
+                  <h3>{a.title}</h3>
+                  <p>{a.description}</p>
+                </article>
+              );
+            })}
+          </div>
+
+          {/* Controles */}
+          <div className="carousel-controls">
+            <button className="carousel-btn" onClick={prev} aria-label="Anterior">
+              <IconArrowRight style={{ transform: 'rotate(180deg)' }} />
+            </button>
+
+            <div className="carousel-dots">
+              {AREAS.map((_, i) => (
+                <button
+                  key={i}
+                  className={i === current ? 'carousel-dot active' : 'carousel-dot'}
+                  onClick={() => setCurrent(i)}
+                  aria-label={`Ir para ${AREAS[i].title}`}
+                />
+              ))}
+            </div>
+
+            <button className="carousel-btn" onClick={next} aria-label="Próximo">
+              <IconArrowRight />
+            </button>
           </div>
         </div>
+
       </div>
     </section>
   );
