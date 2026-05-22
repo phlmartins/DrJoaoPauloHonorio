@@ -15,7 +15,7 @@ function Header({ t }) {
         <a className="hdr-brand" href="#top">
           <img src="assets/logo-jp.svg" alt="JP" />
           <span className="hdr-brand-text">
-            <span className="hdr-brand-name">João Paulo Honorio</span>
+            <span className="hdr-brand-name">Dr. João Paulo Honório</span>
             <span className="hdr-brand-tag">Consultoria Jurídica</span>
           </span>
         </a>
@@ -223,7 +223,7 @@ function About() {
         <div className="section-counter">— O escritório</div>
         <div className="about-bold">
           <div className="about-photo about-photo-bold">
-            <img src="assets/escritorio.jpg" alt="Escritório João Paulo Honorio" />
+            <img src="assets/escritorio.jpg" alt="Escritório Dr. João Paulo Honório" />
             <div className="about-stamp">
               <strong>5+</strong>
               anos de<br />advocacia
@@ -242,7 +242,7 @@ function About() {
               que permite atender <em>cada</em> cliente diretamente.
             </blockquote>
             <p>
-              João Paulo Honorio da Silva é advogado inscrito na OAB/GO sob o
+              Dr. João Paulo Honório da Silva é advogado inscrito na OAB/GO sob o
               número 77627, com atuação consultiva e contenciosa em áreas que
               tocam diretamente o dia a dia das pessoas e das empresas —
               trabalho, previdência, tributos, demandas cíveis e família.
@@ -254,7 +254,7 @@ function About() {
               <li><span className="dot" /> Honorários transparentes, por escrito</li>
             </ul>
             <div className="about-signature">
-              <span className="about-signature-name">J. P. Honorio</span>
+              <span className="about-signature-name">J. P. Honório</span>
               <span className="about-signature-meta">
                 Advogado<br />OAB/GO 77627
               </span>
@@ -619,7 +619,7 @@ function Footer() {
         <div className="footer-grid">
           <div className="footer-brand">
             <img src="assets/logo-jp.svg" alt="JP" />
-            <span className="footer-brand-name">João Paulo Honorio</span>
+            <span className="footer-brand-name">Dr. João Paulo Honório</span>
             <span className="footer-brand-tag">Consultoria Jurídica</span>
             <p>
               Atuação personalizada em Direito Trabalhista, Previdenciário,
@@ -652,7 +652,7 @@ function Footer() {
           </div>
         </div>
         <div className="footer-bottom">
-          <span>© {new Date().getFullYear()} João Paulo Honorio da Silva. Todos os direitos reservados.</span>
+          <span>© {new Date().getFullYear()} Dr. João Paulo Honório da Silva. Todos os direitos reservados.</span>
           <span className="oab">OAB/GO 77627</span>
         </div>
       </div>
