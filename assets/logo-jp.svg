@@ -1,0 +1,70 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" width="120" height="120">
+  <defs>
+    <radialGradient id="bgGrad" cx="50%" cy="35%" r="60%">
+      <stop offset="0%" stop-color="#1e1a14"/>
+      <stop offset="100%" stop-color="#0c0a07"/>
+    </radialGradient>
+    <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#e2c688"/>
+      <stop offset="50%" stop-color="#c9a062"/>
+      <stop offset="100%" stop-color="#a8854a"/>
+    </linearGradient>
+    <linearGradient id="ringGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#c9a062" stop-opacity="0.6"/>
+      <stop offset="100%" stop-color="#a8854a" stop-opacity="0.2"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background circle -->
+  <circle cx="60" cy="60" r="58" fill="url(#bgGrad)"/>
+
+  <!-- Outer ring -->
+  <circle cx="60" cy="60" r="56" fill="none" stroke="url(#ringGrad)" stroke-width="0.8"/>
+
+  <!-- Inner subtle ring -->
+  <circle cx="60" cy="60" r="50" fill="none" stroke="#c9a062" stroke-width="0.3" stroke-opacity="0.3"/>
+
+  <!-- Decorative top rule -->
+  <line x1="30" y1="26" x2="90" y2="26" stroke="#c9a062" stroke-width="0.5" stroke-opacity="0.4"/>
+  <!-- Decorative bottom rule -->
+  <line x1="30" y1="94" x2="90" y2="94" stroke="#c9a062" stroke-width="0.5" stroke-opacity="0.4"/>
+
+  <!-- Letter J -->
+  <!-- Serif J: vertical stroke + hook -->
+  <g fill="url(#goldGrad)">
+    <!-- J top serif -->
+    <rect x="33" y="30" width="18" height="2" rx="0.3"/>
+    <!-- J vertical stroke -->
+    <rect x="40" y="30" width="4.5" height="42"/>
+    <!-- J curve bottom — drawn as path -->
+    <path d="M44.5 72 Q44.5 85 35 85 Q30 85 28 82 L28 79 Q30 82 34.5 82 Q40.5 82 40.5 72 Z"/>
+    <!-- J bottom left serif on curve -->
+    <rect x="27" y="82" width="8" height="2" rx="0.3"/>
+  </g>
+
+  <!-- Letter P -->
+  <g fill="url(#goldGrad)">
+    <!-- P vertical stroke -->
+    <rect x="57.5" y="30" width="4.5" height="52"/>
+    <!-- P top serif -->
+    <rect x="57.5" y="30" width="16" height="2" rx="0.3"/>
+    <!-- P bottom serif -->
+    <rect x="57.5" y="80" width="14" height="2" rx="0.3"/>
+    <!-- P bowl -->
+    <path d="M62 32 Q82 32 82 47 Q82 62 62 62 L62 60 Q78 60 78 47 Q78 34 62 34 Z"/>
+  </g>
+
+  <!-- Dot separator between J and P -->
+  <circle cx="54" cy="60" r="1.8" fill="#c9a062" fill-opacity="0.6"/>
+
+  <!-- Bottom monogram label -->
+  <text
+    x="60" y="103"
+    font-family="'Cormorant Garamond', Georgia, serif"
+    font-size="7"
+    font-weight="400"
+    letter-spacing="0.28em"
+    fill="#c9a062"
+    fill-opacity="0.55"
+    text-anchor="middle">HONORIO</text>
+</svg>
