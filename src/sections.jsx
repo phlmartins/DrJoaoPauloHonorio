@@ -362,11 +362,13 @@ function Testimonials() {
 // ─── Contact ─────────────────────────────────────────────────────────
 function Contact() {
   return (
-    <section className="section" id="contato">
+    <section className="section section-contact-compact" id="contato">
       <div className="container">
         <div className="section-counter">05 — Fale com o escritório</div>
-        <div className="contact contact-solo">
-          <div className="contact-info">
+        <div className="contact-split">
+
+          {/* Esquerda: título + subtítulo */}
+          <div className="contact-left">
             <h2 className="display">
               Sua primeira<br />conversa <em>é gratuita.</em>
             </h2>
@@ -375,47 +377,50 @@ function Contact() {
               uma resposta com a leitura jurídica preliminar e os próximos
               passos sugeridos.
             </p>
-            <dl className="contact-list">
-              <a className="contact-item" href="https://wa.me/5562981132872" target="_blank" rel="noopener">
-                <div className="contact-item-icon"><IconWhatsapp /></div>
-                <div className="contact-item-body">
-                  <dt>WhatsApp</dt>
-                  <dd>(62) 98113-2872</dd>
-                </div>
-              </a>
-              <a className="contact-item" href="mailto:adv.joaohonorio@gmail.com">
-                <div className="contact-item-icon"><IconMail /></div>
-                <div className="contact-item-body">
-                  <dt>E-mail</dt>
-                  <dd>adv.joaohonorio@gmail.com</dd>
-                </div>
-              </a>
-              <a className="contact-item" href="https://www.instagram.com/joaohonorio.adv/" target="_blank" rel="noopener">
-                <div className="contact-item-icon"><IconInstagram /></div>
-                <div className="contact-item-body">
-                  <dt>Instagram</dt>
-                  <dd>@joaohonorio.adv</dd>
-                </div>
-              </a>
-              <a className="contact-item" href="https://maps.google.com/?q=Avenida+Bernardo+Say%C3%A3o+6324+Centro+Ceres+GO" target="_blank" rel="noopener">
-                <div className="contact-item-icon"><IconPin /></div>
-                <div className="contact-item-body">
-                  <dt>Endereço</dt>
-                  <dd>Av. Bernardo Sayão, 6324 — Centro<br />Ceres — GO &middot; CEP 76.300-188</dd>
-                </div>
-              </a>
-              <div className="contact-item">
-                <div className="contact-item-icon"><IconClock /></div>
-                <div className="contact-item-body">
-                  <dt>Atendimento</dt>
-                  <dd>Segunda a sexta &middot; 08h–18h<br />Com hora marcada</dd>
-                </div>
-              </div>
-            </dl>
             <a className="btn btn-primary" href="https://wa.me/5562981132872?text=Ol%C3%A1%2C%20gostaria%20de%20agendar%20uma%20consulta." target="_blank" rel="noopener">
               Falar no WhatsApp <IconArrowRight />
             </a>
           </div>
+
+          {/* Direita: itens de contato */}
+          <dl className="contact-list contact-right">
+            <a className="contact-item" href="https://wa.me/5562981132872" target="_blank" rel="noopener">
+              <div className="contact-item-icon"><IconWhatsapp /></div>
+              <div className="contact-item-body">
+                <dt>WhatsApp</dt>
+                <dd>(62) 98113-2872</dd>
+              </div>
+            </a>
+            <a className="contact-item" href="mailto:adv.joaohonorio@gmail.com">
+              <div className="contact-item-icon"><IconMail /></div>
+              <div className="contact-item-body">
+                <dt>E-mail</dt>
+                <dd>adv.joaohonorio@gmail.com</dd>
+              </div>
+            </a>
+            <a className="contact-item" href="https://www.instagram.com/joaohonorio.adv/" target="_blank" rel="noopener">
+              <div className="contact-item-icon"><IconInstagram /></div>
+              <div className="contact-item-body">
+                <dt>Instagram</dt>
+                <dd>@joaohonorio.adv</dd>
+              </div>
+            </a>
+            <a className="contact-item" href="https://maps.google.com/?q=Avenida+Bernardo+Say%C3%A3o+6324+Centro+Ceres+GO" target="_blank" rel="noopener">
+              <div className="contact-item-icon"><IconPin /></div>
+              <div className="contact-item-body">
+                <dt>Endereço</dt>
+                <dd>Av. Bernardo Sayão, 6324 — Centro<br />Ceres — GO &middot; CEP 76.300-188</dd>
+              </div>
+            </a>
+            <div className="contact-item">
+              <div className="contact-item-icon"><IconClock /></div>
+              <div className="contact-item-body">
+                <dt>Atendimento</dt>
+                <dd>Segunda a sexta &middot; 08h–18h<br />Com hora marcada</dd>
+              </div>
+            </div>
+          </dl>
+
         </div>
       </div>
     </section>
