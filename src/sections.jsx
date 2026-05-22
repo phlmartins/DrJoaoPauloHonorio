@@ -184,8 +184,8 @@ function Areas() {
           </div>
         </div>
       </div>
-      <div className="areas-rail-wrap">
-        <div className="areas-rail">
+      <div className="container">
+        <div className="areas-grid">
           {AREAS.map((a, i) => {
             const Icon = iconMap[a.icon];
             return (
