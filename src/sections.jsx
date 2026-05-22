@@ -411,11 +411,11 @@ function Contact() {
               passos sugeridos.
             </p>
             <dl className="contact-list">
-              <a className="contact-item" href="https://wa.me/5562982172203" target="_blank" rel="noopener">
+              <a className="contact-item" href="https://wa.me/5562981132872" target="_blank" rel="noopener">
                 <div className="contact-item-icon"><IconWhatsapp /></div>
                 <div className="contact-item-body">
                   <dt>WhatsApp</dt>
-                  <dd>(62) 98217-2203</dd>
+                  <dd>(62) 98113-2872</dd>
                 </div>
               </a>
               <a className="contact-item" href="mailto:adv.joaohonorio@gmail.com">
@@ -644,7 +644,7 @@ function Footer() {
           <div className="footer-col">
             <h5>Contato</h5>
             <ul>
-              <li>(62) 98217-2203</li>
+              <li>(62) 98113-2872</li>
               <li>adv.joaohonorio@gmail.com</li>
               <li>@jpconsultoriajuridica</li>
               <li>Av. Bernardo Sayão, 6324<br />Centro, Ceres — GO</li>
@@ -663,7 +663,7 @@ function Footer() {
 // ─── Floating WhatsApp ───────────────────────────────────────────────
 function WhatsappFloat() {
   return (
-    <a className="wpp" href="https://wa.me/5562982172203?text=Ol%C3%A1%2C%20gostaria%20de%20agendar%20uma%20consulta." target="_blank" rel="noopener">
+    <a className="wpp" href="https://wa.me/5562981132872?text=Ol%C3%A1%2C%20gostaria%20de%20agendar%20uma%20consulta." target="_blank" rel="noopener">
       <IconWhatsapp />
       <span className="wpp-label">Fale no WhatsApp</span>
     </a>
