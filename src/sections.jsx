@@ -194,9 +194,6 @@ function Areas() {
                 <div className="area-bold-glyph"><Icon /></div>
                 <h3>{a.title}</h3>
                 <p>{a.description}</p>
-                <span className="area-bold-link">
-                  Saber mais <IconArrowUpRight style={{ width: 12, height: 12 }} />
-                </span>
               </article>
             );
           })}
