@@ -638,6 +638,10 @@ img { display: block; max-width: 100%; height: auto; }
   gap: 80px;
   align-items: start;
 }
+.contact-solo {
+  grid-template-columns: 1fr;
+  max-width: 680px;
+}
 .contact-info { display: flex; flex-direction: column; gap: 40px; }
 .contact-info h2.display { font-size: clamp(36px, 4.5vw, 60px); }
 .contact-list {

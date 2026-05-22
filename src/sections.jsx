@@ -360,47 +360,12 @@ function Testimonials() {
 }
 
 // ─── Contact ─────────────────────────────────────────────────────────
-function nextWeekdays(n = 7) {
-  const out = [];
-  const d = new Date();
-  d.setHours(0, 0, 0, 0);
-  while (out.length < n) {
-    d.setDate(d.getDate() + 1);
-    const dow = d.getDay();
-    if (dow !== 0 && dow !== 6) out.push(new Date(d));
-  }
-  return out;
-}
-const TIMES = ['09:00', '10:00', '11:00', '14:00', '15:00', '16:00', '17:00'];
-const MONTH_PT = ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'];
-const DOW_PT = ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb'];
-
 function Contact() {
-  const [step, setStep] = React.useState(1);
-  const [form, setForm] = React.useState({
-    name: '', email: '', phone: '', area: '', message: '',
-    date: null, time: '',
-  });
-  const [submitted, setSubmitted] = React.useState(false);
-
-  const days = React.useMemo(() => nextWeekdays(7), []);
-  const set = (k) => (e) => setForm((f) => ({ ...f, [k]: e.target.value }));
-
-  const canStep2 = form.name.trim() && form.phone.trim();
-  const canStep3 = canStep2 && form.area && form.message.trim();
-  const canSubmit = canStep3 && form.date && form.time;
-
-  const onSubmit = (e) => {
-    e.preventDefault();
-    if (!canSubmit) return;
-    setSubmitted(true);
-  };
-
   return (
     <section className="section" id="contato">
       <div className="container">
         <div className="section-counter">05 — Fale com o escritório</div>
-        <div className="contact">
+        <div className="contact contact-solo">
           <div className="contact-info">
             <h2 className="display">
               Sua primeira<br />conversa <em>é gratuita.</em>
@@ -447,133 +412,10 @@ function Contact() {
                 </div>
               </div>
             </dl>
+            <a className="btn btn-primary" href="https://wa.me/5562981132872?text=Ol%C3%A1%2C%20gostaria%20de%20agendar%20uma%20consulta." target="_blank" rel="noopener">
+              Falar no WhatsApp <IconArrowRight />
+            </a>
           </div>
-
-          <form className="contact-form" onSubmit={onSubmit}>
-            {submitted ? (
-              <div className="form-success">
-                <div className="form-success-icon"><IconCheck /></div>
-                <h3>Consulta agendada.</h3>
-                <p>
-                  Obrigado, {form.name.split(' ')[0]}. Sua consulta sobre <strong style={{color:'var(--gold)'}}>{form.area}</strong> foi reservada para
-                  {' '}<strong style={{color:'var(--cream)'}}>{form.date && `${DOW_PT[form.date.getDay()]}, ${form.date.getDate()} ${MONTH_PT[form.date.getMonth()]} · ${form.time}`}</strong>.
-                  Em até 24 horas você recebe a confirmação no WhatsApp.
-                </p>
-                <button type="button" className="btn btn-ghost" onClick={() => { setSubmitted(false); setStep(1); setForm({ name:'', email:'', phone:'', area:'', message:'', date:null, time:'' }); }}>
-                  Agendar outra consulta
-                </button>
-              </div>
-            ) : (
-              <>
-                <div className="contact-form-head">
-                  <h3>Agendar consulta</h3>
-                  <span className="contact-form-step">Etapa {step} de 3</span>
-                </div>
-
-                {step === 1 && (
-                  <>
-                    <div className="field">
-                      <label htmlFor="name">Nome completo</label>
-                      <input id="name" type="text" value={form.name} onChange={set('name')} placeholder="Como devemos te chamar?" />
-                    </div>
-                    <div className="field-row">
-                      <div className="field">
-                        <label htmlFor="phone">WhatsApp</label>
-                        <input id="phone" type="tel" value={form.phone} onChange={set('phone')} placeholder="(00) 00000-0000" />
-                      </div>
-                      <div className="field">
-                        <label htmlFor="email">E-mail (opcional)</label>
-                        <input id="email" type="email" value={form.email} onChange={set('email')} placeholder="voce@email.com" />
-                      </div>
-                    </div>
-                    <button type="button" className="btn btn-primary" disabled={!canStep2} style={{opacity: canStep2 ? 1 : 0.5}} onClick={() => setStep(2)}>
-                      Continuar <IconArrowRight />
-                    </button>
-                  </>
-                )}
-
-                {step === 2 && (
-                  <>
-                    <div className="field">
-                      <label>Sobre qual área?</label>
-                      <div className="area-pills">
-                        {AREAS.map((a) => (
-                          <button
-                            key={a.title}
-                            type="button"
-                            className={form.area === a.title ? 'area-pill active' : 'area-pill'}
-                            onClick={() => setForm((f) => ({ ...f, area: a.title }))}
-                          >
-                            {a.title}
-                          </button>
-                        ))}
-                      </div>
-                    </div>
-                    <div className="field">
-                      <label htmlFor="msg">Conte o seu caso</label>
-                      <textarea id="msg" value={form.message} onChange={set('message')} placeholder="O que aconteceu? Há prazos ou documentos importantes?" />
-                    </div>
-                    <div style={{display:'flex', gap:12, marginTop:6}}>
-                      <button type="button" className="btn btn-ghost" onClick={() => setStep(1)} style={{flex:'none'}}>
-                        Voltar
-                      </button>
-                      <button type="button" className="btn btn-primary" disabled={!canStep3} style={{opacity: canStep3 ? 1 : 0.5, flex:1, justifyContent:'center'}} onClick={() => setStep(3)}>
-                        Continuar <IconArrowRight />
-                      </button>
-                    </div>
-                  </>
-                )}
-
-                {step === 3 && (
-                  <>
-                    <div className="field">
-                      <label>Escolha um dia</label>
-                      <div className="date-grid">
-                        {days.map((d) => {
-                          const isSel = form.date && d.toDateString() === form.date.toDateString();
-                          return (
-                            <button
-                              type="button"
-                              key={d.toISOString()}
-                              className={isSel ? 'date-chip active' : 'date-chip'}
-                              onClick={() => setForm((f) => ({ ...f, date: d }))}
-                            >
-                              <span className="date-chip-dow">{DOW_PT[d.getDay()]}</span>
-                              <span className="date-chip-day">{d.getDate()}</span>
-                              <span className="date-chip-mon">{MONTH_PT[d.getMonth()]}</span>
-                            </button>
-                          );
-                        })}
-                      </div>
-                    </div>
-                    <div className="field">
-                      <label>Horário disponível</label>
-                      <div className="time-grid">
-                        {TIMES.map((tm) => (
-                          <button
-                            type="button"
-                            key={tm}
-                            className={form.time === tm ? 'time-chip active' : 'time-chip'}
-                            onClick={() => setForm((f) => ({ ...f, time: tm }))}
-                          >
-                            {tm}
-                          </button>
-                        ))}
-                      </div>
-                    </div>
-                    <div style={{display:'flex', gap:12, marginTop:6}}>
-                      <button type="button" className="btn btn-ghost" onClick={() => setStep(2)} style={{flex:'none'}}>
-                        Voltar
-                      </button>
-                      <button type="submit" className="btn btn-primary" disabled={!canSubmit} style={{opacity: canSubmit ? 1 : 0.5, flex:1, justifyContent:'center'}}>
-                        Confirmar consulta <IconArrowRight />
-                      </button>
-                    </div>
-                  </>
-                )}
-              </>
-            )}
-          </form>
         </div>
       </div>
     </section>
