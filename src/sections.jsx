@@ -499,7 +499,7 @@ function Footer() {
           </div>
         </div>
         <div className="footer-bottom">
-          <span>© {new Date().getFullYear()} Dr. João Paulo Honório da Silva. Todos os direitos reservados.</span>
+          <span>© 2026 Dr. João Paulo Honório da Silva. Todos os direitos reservados. by SkyDev</span>
           <span className="oab">OAB/GO 77627</span>
         </div>
       </div>
