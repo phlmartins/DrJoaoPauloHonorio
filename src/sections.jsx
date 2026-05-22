@@ -425,11 +425,11 @@ function Contact() {
                   <dd>adv.joaohonorio@gmail.com</dd>
                 </div>
               </a>
-              <a className="contact-item" href="https://instagram.com/jpconsultoriajuridica" target="_blank" rel="noopener">
+              <a className="contact-item" href="https://www.instagram.com/joaohonorio.adv/" target="_blank" rel="noopener">
                 <div className="contact-item-icon"><IconInstagram /></div>
                 <div className="contact-item-body">
                   <dt>Instagram</dt>
-                  <dd>@jpconsultoriajuridica</dd>
+                  <dd>@joaohonorio.adv</dd>
                 </div>
               </a>
               <a className="contact-item" href="https://maps.google.com/?q=Avenida+Bernardo+Say%C3%A3o+6324+Centro+Ceres+GO" target="_blank" rel="noopener">
@@ -660,13 +660,29 @@ function Footer() {
   );
 }
 
-// ─── Floating WhatsApp ───────────────────────────────────────────────
+// ─── Floating Social Buttons ─────────────────────────────────────────
 function WhatsappFloat() {
   return (
-    <a className="wpp" href="https://wa.me/5562981132872?text=Ol%C3%A1%2C%20gostaria%20de%20agendar%20uma%20consulta." target="_blank" rel="noopener">
-      <IconWhatsapp />
-      <span className="wpp-label">Fale no WhatsApp</span>
-    </a>
+    <div className="float-buttons">
+      <a
+        className="float-btn float-insta"
+        href="https://www.instagram.com/joaohonorio.adv/"
+        target="_blank"
+        rel="noopener"
+        aria-label="Instagram"
+      >
+        <IconInstagram />
+      </a>
+      <a
+        className="float-btn float-wpp"
+        href="https://wa.me/5562981132872?text=Ol%C3%A1%2C%20gostaria%20de%20agendar%20uma%20consulta."
+        target="_blank"
+        rel="noopener"
+        aria-label="WhatsApp"
+      >
+        <IconWhatsapp />
+      </a>
+    </div>
   );
 }
 
