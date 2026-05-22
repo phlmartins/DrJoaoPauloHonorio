@@ -427,9 +427,9 @@ function Contact() {
 // ─── Map ─────────────────────────────────────────────────────────────
 function MapSection() {
   return (
-    <section className="map-section" id="endereco">
-      <div className="map-overlay">
-        <div className="container">
+    <section className="map-section section" id="endereco">
+      <div className="container">
+        <div className="map-inner">
           <div className="map-card">
             <span className="eyebrow">Visite o escritório</span>
             <h3 className="display">Centro de Ceres &mdash; GO</h3>
@@ -442,15 +442,15 @@ function MapSection() {
               Abrir no Google Maps <IconArrowUpRight />
             </a>
           </div>
+          <iframe
+            title="Mapa do escritório"
+            className="map-iframe"
+            src="https://maps.google.com/maps?q=Avenida%20Bernardo%20Say%C3%A3o%206324%20Centro%20Ceres%20GO&t=&z=15&ie=UTF8&iwloc=&output=embed"
+            loading="lazy"
+            referrerPolicy="no-referrer-when-downgrade"
+          />
         </div>
       </div>
-      <iframe
-        title="Mapa do escritório"
-        className="map-iframe"
-        src="https://maps.google.com/maps?q=Avenida%20Bernardo%20Say%C3%A3o%206324%20Centro%20Ceres%20GO&t=&z=15&ie=UTF8&iwloc=&output=embed"
-        loading="lazy"
-        referrerPolicy="no-referrer-when-downgrade"
-      />
     </section>
   );
 }
