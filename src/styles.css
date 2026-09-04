@@ -173,13 +173,6 @@ ul, ol { list-style: none; }
   white-space: nowrap;
 }
 
-.site-brand__dr {
-  font-size: 1.35em;
-  font-weight: 600;
-  color: var(--gold-deep);
-  letter-spacing: 0.02em;
-}
-
 .site-brand__tag {
   font-size: 11px;
   font-weight: var(--font-weight-medium);
@@ -739,12 +732,6 @@ ul, ol { list-style: none; }
   line-height: 1.15;
 }
 
-.site-footer__dr {
-  font-size: 1.3em;
-  font-weight: 600;
-  color: var(--gold-deep);
-}
-
 .site-footer__tag {
   font-size: 11px;
   letter-spacing: 0.12em;
@@ -1016,10 +1003,6 @@ ul, ol { list-style: none; }
 
   .site-brand__name {
     font-size: 0.98rem;
-  }
-
-  .site-brand__dr {
-    font-size: 1.28em;
   }
 
   .hero { padding-top: calc(88px + 32px); }

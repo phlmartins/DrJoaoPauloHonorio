@@ -126,10 +126,7 @@ function Header() {
             />
           </span>
           <span className="site-brand__text">
-            <span className="site-brand__name">
-              <span className="site-brand__dr">Dr.</span>
-              {' '}João Paulo Honório
-            </span>
+            <span className="site-brand__name">Dr. João Paulo Honório</span>
             <span className="site-brand__tag">Consultoria Jurídica</span>
           </span>
         </a>
@@ -499,10 +496,7 @@ function Footer() {
               />
             </span>
             <div>
-              <p className="site-footer__name">
-                <span className="site-footer__dr">Dr.</span>
-                {' '}João Paulo Honório
-              </p>
+              <p className="site-footer__name">Dr. João Paulo Honório</p>
               <p className="site-footer__tag">Consultoria Jurídica · Ceres/GO</p>
             </div>
           </div>
