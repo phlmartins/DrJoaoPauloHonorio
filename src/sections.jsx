@@ -16,19 +16,84 @@ import {
 } from './icons.jsx';
 
 const NAV_LINKS = [
-  { href: '#areas', label: 'Áreas de atuação' },
+  { href: '#areas', label: 'Áreas' },
   { href: '#sobre', label: 'Sobre' },
-  { href: '#metodo', label: 'Método' },
+  { href: '#metodo', label: 'Atendimento' },
   { href: '#contato', label: 'Contato' },
 ];
 
-// ─── Header ──────────────────────────────────────────────────────────
+const AREAS = [
+  {
+    icon: IconBriefcase,
+    title: 'Trabalhista',
+    description:
+      'Defesa do trabalhador e do empregador. Vínculos, verbas rescisórias, horas extras e acordos.',
+  },
+  {
+    icon: IconShield,
+    title: 'Previdenciária',
+    description:
+      'Aposentadoria, BPC/LOAS, auxílios e revisão de benefícios junto ao INSS.',
+  },
+  {
+    icon: IconScales,
+    title: 'Tributária',
+    description:
+      'Recuperação de créditos, execuções fiscais, parcelamentos e planejamento tributário.',
+  },
+  {
+    icon: IconHearth,
+    title: 'Família e Sucessões',
+    description:
+      'Divórcio, guarda, alimentos, inventário e testamento.',
+  },
+  {
+    icon: IconGavel,
+    title: 'Cível',
+    description:
+      'Contratos, responsabilidade civil, consumidor e ações indenizatórias.',
+  },
+];
+
+const STEPS = [
+  {
+    title: 'Escuta e diagnóstico',
+    body: 'Você conta o caso e recebe uma leitura jurídica preliminar, com clareza sobre caminhos possíveis.',
+  },
+  {
+    title: 'Estratégia por escrito',
+    body: 'Honorários, prazos e próximos passos definidos antes de qualquer movimentação.',
+  },
+  {
+    title: 'Acompanhamento direto',
+    body: 'Atendimento com o advogado responsável e retorno por WhatsApp a cada andamento relevante.',
+  },
+];
+
+const TESTIS = [
+  {
+    quote: 'Fui tratado como prioridade do início ao fim, com retorno em cada etapa do processo.',
+    name: 'Marcos R.',
+    caseLabel: 'Aposentadoria por idade',
+  },
+  {
+    quote: 'Conduziu nosso inventário com calma e transparência em um momento difícil para a família.',
+    name: 'Ana P.',
+    caseLabel: 'Inventário e partilha',
+  },
+  {
+    quote: 'Encontramos créditos tributários que desconhecíamos. Atendimento sério e objetivo.',
+    name: 'L. C.',
+    caseLabel: 'Recuperação tributária',
+  },
+];
+
 function Header() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 40);
+    const onScroll = () => setScrolled(window.scrollY > 24);
     onScroll();
     window.addEventListener('scroll', onScroll, { passive: true });
     return () => window.removeEventListener('scroll', onScroll);
@@ -42,26 +107,26 @@ function Header() {
   const close = () => setOpen(false);
 
   return (
-    <header className={scrolled || open ? 'hdr scrolled' : 'hdr'}>
-      <div className="container hdr-inner">
-        <a className="hdr-brand" href="#top" onClick={close}>
-          <img src="assets/logo-jp.svg" alt="JP" />
-          <span className="hdr-brand-text">
-            <span className="hdr-brand-name">Dr. João Paulo Honório</span>
-            <span className="hdr-brand-tag">Consultoria Jurídica</span>
+    <header className={scrolled || open ? 'site-header is-scrolled' : 'site-header'}>
+      <div className="container site-header__inner">
+        <a className="site-brand" href="#top" onClick={close}>
+          <img src="/assets/logo-jp.svg" alt="" width={40} height={40} />
+          <span className="site-brand__text">
+            <span className="site-brand__name">Dr. João Paulo Honório</span>
+            <span className="site-brand__tag">Consultoria Jurídica</span>
           </span>
         </a>
-        <nav className="hdr-nav">
+        <nav className="site-nav" aria-label="Principal">
           {NAV_LINKS.map((l) => (
             <a key={l.href} href={l.href}>{l.label}</a>
           ))}
         </nav>
-        <a className="hdr-cta" href="#contato">
-          <span className="hdr-cta-label">Agendar consulta</span>
-          <IconArrowRight />
+        <a className="btn btn--outline site-header__cta" href="#contato">
+          Agendar consulta
         </a>
         <button
-          className="menu-btn"
+          type="button"
+          className="site-menu-btn"
           aria-label={open ? 'Fechar menu' : 'Abrir menu'}
           aria-expanded={open}
           onClick={() => setOpen((v) => !v)}
@@ -70,12 +135,12 @@ function Header() {
         </button>
       </div>
       {open && (
-        <nav className="hdr-nav-mobile" aria-label="Menu">
+        <nav className="site-nav-mobile" aria-label="Menu mobile">
           {NAV_LINKS.map((l) => (
             <a key={l.href} href={l.href} onClick={close}>{l.label}</a>
           ))}
-          <a className="btn btn-primary" href="#contato" onClick={close}>
-            Agendar consulta <IconArrowRight />
+          <a className="btn btn--primary" href="#contato" onClick={close}>
+            Agendar consulta
           </a>
         </nav>
       )}
@@ -83,318 +148,182 @@ function Header() {
   );
 }
 
-// ─── Hero ────────────────────────────────────────────────────────────
 function Hero() {
   return (
     <section className="hero" id="top">
-      <div className="hero-monogram-bg" aria-hidden="true">
-        <img src="assets/logo-jp.svg" alt="" />
-      </div>
-      <div className="hero-coord">
-        <span>16°22′S</span>
-        <span>49°35′W</span>
-      </div>
-      <div className="hero-ticker">
-        <span>Av. Bernardo Sayão</span>
-        <span className="dot" />
-        <span>6324</span>
-        <span className="dot" />
-        <span>Centro</span>
-        <span className="dot" />
-        <span>Ceres — GO</span>
-        <span className="dot" />
-        <span>OAB/GO 77627</span>
-      </div>
-      <div className="container hero-content-bold">
-        <div className="hero-eyebrow-row">
-          <span className="eyebrow">Consultoria Jurídica</span>
-          <span className="hero-year">Est. Ceres · GO</span>
-        </div>
-        <h1 className="display hero-h1-bold">
-          <span className="hero-word w1">Cada</span>
-          <span className="hero-word w2"><em>causa,</em></span>
-          <span className="hero-word w3">uma</span>
-          <span className="hero-word w4"><em>estratégia</em>.</span>
-        </h1>
-        <div className="hero-bottom">
-          <p className="sub hero-sub-bold">
-            Patrocínio jurídico estratégico em Trabalhista, Previdenciário,
-            Tributário, Cível e Família e Sucessões — atendimento direto com
-            o advogado responsável, do diagnóstico à decisão final.
+      <div className="container hero__grid">
+        <div className="hero__copy">
+          <p className="kicker">Ceres — GO · OAB/GO 77627</p>
+          <h1 className="hero__title">
+            Consultoria jurídica com atendimento direto e estratégia clara.
+          </h1>
+          <p className="hero__lead">
+            Atuação em Trabalhista, Previdenciário, Tributário, Cível e Família
+            e Sucessões. Você fala com o advogado responsável — do primeiro
+            contato à condução do caso.
           </p>
-          <div className="hero-numeric">
-            <div className="hero-numeric-item">
-              <span className="num">05</span>
-              <span className="lbl">áreas de<br />atuação</span>
-            </div>
-            <div className="hero-numeric-item">
-              <span className="num">77 627</span>
-              <span className="lbl">OAB / GO</span>
-            </div>
-            <div className="hero-numeric-item">
-              <span className="num">24h</span>
-              <span className="lbl">para retornar<br />sua mensagem</span>
-            </div>
+          <div className="hero__actions">
+            <a className="btn btn--primary" href="#contato">
+              Agendar consulta <IconArrowRight />
+            </a>
+            <a className="btn btn--ghost" href="#areas">
+              Ver áreas de atuação
+            </a>
           </div>
+          <dl className="hero__facts">
+            <div>
+              <dt>Endereço</dt>
+              <dd>Av. Bernardo Sayão, 6324 — Ceres/GO</dd>
+            </div>
+            <div>
+              <dt>Retorno</dt>
+              <dd>Até 24 horas úteis</dd>
+            </div>
+          </dl>
         </div>
-        <div className="hero-actions hero-actions-bold">
-          <a className="btn btn-primary" href="#contato">
-            Agendar consulta <IconArrowRight />
-          </a>
-          <a className="btn btn-ghost" href="#areas">
-            Ver áreas <IconArrowRight />
-          </a>
-        </div>
+        <aside className="hero__card" aria-label="Informações do escritório">
+          <img src="/assets/logo-jp.svg" alt="" className="hero__card-logo" />
+          <p className="hero__card-name">João Paulo Honório da Silva</p>
+          <p className="hero__card-role">Advogado · Consultoria Jurídica</p>
+          <hr className="hero__card-rule" />
+          <dl className="hero__card-list">
+            <div>
+              <dt>OAB</dt>
+              <dd>77627 / GO</dd>
+            </div>
+            <div>
+              <dt>Atendimento</dt>
+              <dd>Seg–Sex, 8h–18h</dd>
+            </div>
+            <div>
+              <dt>WhatsApp</dt>
+              <dd>(62) 98113-2872</dd>
+            </div>
+          </dl>
+        </aside>
       </div>
     </section>
   );
 }
 
-// ─── Marquee ─────────────────────────────────────────────────────────
-function Marquee() {
-  const items = [
-    'Trabalhista', 'Previdenciária', 'Tributária', 'Família e Sucessões',
-    'Consultoria estratégica', 'Atendimento direto com o advogado',
-  ];
-  // Duplicate for seamless loop
-  const all = [...items, ...items];
+function SectionIntro({ kicker, title, children }) {
   return (
-    <div className="marquee" aria-hidden="true">
-      <div className="marquee-track">
-        {all.map((it, i) => (
-          <div className="marquee-item" key={i}>
-            <span className="dot" />
-            {it}
-          </div>
-        ))}
-      </div>
-    </div>
+    <header className="section-intro">
+      {kicker && <p className="kicker">{kicker}</p>}
+      <h2 className="section-intro__title">{title}</h2>
+      {children && <p className="section-intro__lead">{children}</p>}
+    </header>
   );
 }
 
-// ─── Areas ───────────────────────────────────────────────────────────
-const AREAS = [
-  {
-    icon: 'IconBriefcase',
-    title: 'Trabalhista',
-    description:
-      'Defesa do trabalhador e do empregador. Reconhecimento de vínculo, horas extras, rescisão indireta, verbas rescisórias e acordos.',
-  },
-  {
-    icon: 'IconShield',
-    title: 'Previdenciária',
-    description:
-      'Aposentadoria, BPC/LOAS, auxílios e revisão de benefícios. Planejamento previdenciário antes do requerimento ao INSS.',
-  },
-  {
-    icon: 'IconScales',
-    title: 'Tributária',
-    description:
-      'Recuperação de créditos, defesa em execuções fiscais, parcelamentos e planejamento tributário para pessoas físicas e empresas.',
-  },
-  {
-    icon: 'IconHearth',
-    title: 'Família e Sucessões',
-    description:
-      'Divórcio, guarda, alimentos, inventário e testamento. Acompanhamento próximo em momentos sensíveis.',
-  },
-  {
-    icon: 'IconGavel',
-    title: 'Cível',
-    description:
-      'Contratos, responsabilidade civil, direito do consumidor, ações indenizatórias e demais demandas cíveis em geral.',
-  },
-];
-
 function Areas() {
-  const iconMap = {
-    IconBriefcase, IconShield, IconScales, IconHearth, IconGavel,
-  };
   return (
-    <section className="section section-areas-bold" id="areas">
+    <section className="section section--soft" id="areas">
       <div className="container">
-        <div className="section-counter">— Áreas de atuação / 05</div>
-        <div className="section-head section-head-bold">
-          <h2 className="display">
-            <span>cinco</span><br />
-            <em>frentes,</em><br />
-            uma só<br />
-            <em>prática.</em>
-          </h2>
-          <div className="right">
-            <p className="sub">
-              Atuação concentrada em áreas onde a estratégia importa tanto
-              quanto a doutrina. Cada caso é estudado em profundidade — do
-              diagnóstico inicial à sustentação oral, se necessário.
-            </p>
-          </div>
-        </div>
-      </div>
-      <div className="container">
+        <SectionIntro
+          kicker="Áreas de atuação"
+          title="Cinco frentes de prática jurídica"
+        >
+          Atuação concentrada em demandas do dia a dia de pessoas e empresas,
+          com estudo do caso antes de qualquer movimentação.
+        </SectionIntro>
         <div className="areas-grid">
-          {AREAS.map((a, i) => {
-            const Icon = iconMap[a.icon];
+          {AREAS.map((area) => {
+            const Icon = area.icon;
             return (
-              <article className="area-bold" key={a.title}>
-                <div className="area-bold-num">{String(i + 1).padStart(2, '0')}</div>
-                <div className="area-bold-glyph"><Icon /></div>
-                <h3>{a.title}</h3>
-                <p>{a.description}</p>
+              <article className="area-card" key={area.title}>
+                <span className="area-card__icon" aria-hidden="true">
+                  <Icon />
+                </span>
+                <h3>{area.title}</h3>
+                <p>{area.description}</p>
               </article>
             );
           })}
-          <div className="area-bold-end">
-            <p>
-              Outra demanda? Mande sua mensagem — analiso pessoalmente e
-              respondo em até 24 horas.
-            </p>
-            <a className="btn btn-ghost" href="#contato">
-              Falar comigo <IconArrowRight />
-            </a>
-          </div>
         </div>
       </div>
     </section>
   );
 }
 
-// ─── About ───────────────────────────────────────────────────────────
 function About() {
   return (
-    <section className="section about-section-bold" id="sobre">
-      <div className="container">
-        <div className="section-counter">— O escritório</div>
-        <div className="about-bold">
-          <div className="about-photo about-photo-bold">
-            <img src="assets/escritorio.jpg" alt="Escritório Dr. João Paulo Honório" />
-            <div className="about-stamp">
-              <strong>5+</strong>
-              anos de<br />advocacia
-            </div>
-            <div className="about-photo-cap">
-              Escritório &middot;<br />Av. Bernardo Sayão, 6324<br />Ceres &mdash; GO
-            </div>
-          </div>
-          <div className="about-text about-text-bold">
-            <h2 className="display">
-              Advocacia<br /><em>com presença.</em>
-            </h2>
-            <blockquote className="about-quote">
-              <span className="quote-mark">&ldquo;</span>
-              Uma carteira restrita de causas é uma escolha deliberada — é o
-              que permite atender <em>cada</em> cliente diretamente.
-            </blockquote>
-            <p>
-              Dr. João Paulo Honório da Silva é advogado inscrito na OAB/GO sob o
-              número 77627, com atuação consultiva e contenciosa em áreas que
-              tocam diretamente o dia a dia das pessoas e das empresas —
-              trabalho, previdência, tributos, demandas cíveis e família.
-            </p>
-            <ul className="about-creds">
-              <li><span className="dot" /> Atendimento direto, sem intermediação</li>
-              <li><span className="dot" /> Estratégia documentada antes da movimentação</li>
-              <li><span className="dot" /> Atualizações por WhatsApp em cada andamento</li>
-              <li><span className="dot" /> Honorários transparentes, por escrito</li>
-            </ul>
-            <div className="about-signature">
-              <span className="about-signature-name">J. P. Honório</span>
-              <span className="about-signature-meta">
-                Advogado<br />OAB/GO 77627
-              </span>
-            </div>
-          </div>
+    <section className="section" id="sobre">
+      <div className="container about-grid">
+        <figure className="about-photo">
+          <img src="/assets/escritorio.jpg" alt="Interior do escritório Dr. João Paulo Honório" />
+          <figcaption>Av. Bernardo Sayão, 6324 — Centro, Ceres/GO</figcaption>
+        </figure>
+        <div className="about-copy">
+          <SectionIntro
+            kicker="Sobre o escritório"
+            title="Advocacia próxima, com método e transparência"
+          />
+          <p>
+            Dr. João Paulo Honório da Silva é advogado inscrito na OAB/GO 77627,
+            com atuação consultiva e contenciosa. O escritório mantém carteira
+            enxuta para garantir atendimento pessoal em cada demanda.
+          </p>
+          <ul className="check-list">
+            <li>Atendimento direto com o advogado responsável</li>
+            <li>Estratégia e honorários definidos por escrito</li>
+            <li>Atualizações por WhatsApp nos andamentos relevantes</li>
+            <li>Consulta inicial sem compromisso</li>
+          </ul>
+          <p className="about-sign">
+            <strong>J. P. Honório</strong>
+            <span>Advogado · OAB/GO 77627</span>
+          </p>
         </div>
       </div>
     </section>
   );
 }
 
-// ─── Differentiators / Method ────────────────────────────────────────
-const DIFFS = [
-  {
-    title: 'Atendimento personalizado',
-    body: 'Você fala diretamente com o advogado responsável, do primeiro contato à sentença. Sem fila de espera, sem terceirização.',
-  },
-  {
-    title: 'Transparência total',
-    body: 'Honorários, prazos e estratégia definidos por escrito antes de qualquer movimentação. Você sabe exatamente onde está.',
-  },
-  {
-    title: 'Tecnologia a serviço',
-    body: 'Acompanhamento digital do andamento processual e canal direto no WhatsApp para dúvidas e atualizações em tempo real.',
-  },
-];
 function Method() {
   return (
-    <section className="section" id="metodo">
+    <section className="section section--soft" id="metodo">
       <div className="container">
-        <div className="section-counter">03 — Como atendemos</div>
-        <div className="section-head">
-          <h2 className="display">Método antes<br />de <em>movimentação.</em></h2>
-          <div className="right">
-            <p className="sub">
-              O cuidado com o que vem antes do processo é o que diferencia uma
-              causa bem conduzida. Por isso o trabalho começa pela escuta —
-              e termina pelo resultado mais favorável possível.
-            </p>
-          </div>
-        </div>
-        <div className="diff-grid">
-          {DIFFS.map((d, i) => (
-            <div className="diff" key={d.title}>
-              <div className="diff-num">{String(i + 1).padStart(2, '0')}</div>
-              <h4>{d.title}</h4>
-              <p>{d.body}</p>
-            </div>
+        <SectionIntro
+          kicker="Atendimento"
+          title="Como conduzimos cada caso"
+        >
+          O trabalho começa pela escuta. Só depois vem a movimentação — sempre
+          com clareza sobre prazos, custos e próximos passos.
+        </SectionIntro>
+        <ol className="steps">
+          {STEPS.map((step, i) => (
+            <li className="step-card" key={step.title}>
+              <span className="step-card__num">{String(i + 1).padStart(2, '0')}</span>
+              <h3>{step.title}</h3>
+              <p>{step.body}</p>
+            </li>
           ))}
-        </div>
+        </ol>
       </div>
     </section>
   );
 }
 
-// ─── Testimonials ────────────────────────────────────────────────────
-const TESTIS = [
-  {
-    quote: 'Da primeira reunião à sentença, fui tratado como prioridade. Recebi atualizações por WhatsApp em cada andamento do processo.',
-    name: 'Marcos R.',
-    caseLabel: 'Aposentadoria por idade',
-  },
-  {
-    quote: 'Resolvi um inventário familiar complicado com tranquilidade. Trouxe leveza para um momento difícil.',
-    name: 'Ana P.',
-    caseLabel: 'Inventário e partilha',
-  },
-  {
-    quote: 'Recuperamos créditos tributários que nem sabíamos que tínhamos direito. Atendimento de outro nível.',
-    name: 'L. C. — Comércio',
-    caseLabel: 'Recuperação tributária',
-  },
-];
 function Testimonials() {
   return (
     <section className="section" id="depoimentos">
       <div className="container">
-        <div className="section-counter">04 — Histórias de clientes</div>
-        <div className="section-head">
-          <h2 className="display">Resultado<br />em <em>palavras de quem viveu.</em></h2>
-          <div className="right">
-            <p className="sub">
-              Histórias reais de quem confiou seu caso a este escritório.
-              Nomes resguardados quando o cliente assim preferiu.
-            </p>
-          </div>
-        </div>
-        <div className="testimonials">
-          {TESTIS.map((t, i) => (
-            <article className="testi" key={i}>
-              <span className="testi-quote">"</span>
+        <SectionIntro
+          kicker="Depoimentos"
+          title="A confiança de quem já foi atendido"
+        >
+          Relatos reais. Nomes resguardados quando o cliente preferiu.
+        </SectionIntro>
+        <div className="testimonials-grid">
+          {TESTIS.map((t) => (
+            <blockquote className="quote-card" key={t.name}>
               <p>{t.quote}</p>
-              <div className="testi-meta">
-                <span className="testi-name">{t.name}</span>
-                <span className="testi-case">{t.caseLabel}</span>
-              </div>
-            </article>
+              <footer>
+                <cite>{t.name}</cite>
+                <span>{t.caseLabel}</span>
+              </footer>
+            </blockquote>
           ))}
         </div>
       </div>
@@ -402,180 +331,181 @@ function Testimonials() {
   );
 }
 
-// ─── Contact ─────────────────────────────────────────────────────────
 function Contact() {
   return (
-    <section className="section section-contact-compact" id="contato">
-      <div className="container">
-        <div className="section-counter">05 — Fale com o escritório</div>
-        <div className="contact-split">
-
-          {/* Esquerda: título + subtítulo */}
-          <div className="contact-left">
-            <h2 className="display">
-              Sua primeira<br />conversa <em>é gratuita.</em>
-            </h2>
-            <p className="sub">
-              Conte o seu caso em poucas linhas. Em até 24 horas você recebe
-              uma resposta com a leitura jurídica preliminar e os próximos
-              passos sugeridos.
-            </p>
-            <a className="btn btn-primary" href="https://wa.me/5562981132872?text=Ol%C3%A1%2C%20gostaria%20de%20agendar%20uma%20consulta." target="_blank" rel="noopener">
-              Falar no WhatsApp <IconArrowRight />
-            </a>
-          </div>
-
-          {/* Direita: itens de contato */}
-          <dl className="contact-list contact-right">
-            <a className="contact-item" href="https://wa.me/5562981132872" target="_blank" rel="noopener">
-              <div className="contact-item-icon"><IconWhatsapp /></div>
-              <div className="contact-item-body">
-                <dt>WhatsApp</dt>
-                <dd>(62) 98113-2872</dd>
-              </div>
-            </a>
-            <a className="contact-item" href="mailto:adv.joaohonorio@gmail.com">
-              <div className="contact-item-icon"><IconMail /></div>
-              <div className="contact-item-body">
-                <dt>E-mail</dt>
-                <dd>adv.joaohonorio@gmail.com</dd>
-              </div>
-            </a>
-            <a className="contact-item" href="https://www.instagram.com/joaohonorio.adv/" target="_blank" rel="noopener">
-              <div className="contact-item-icon"><IconInstagram /></div>
-              <div className="contact-item-body">
-                <dt>Instagram</dt>
-                <dd>@joaohonorio.adv</dd>
-              </div>
-            </a>
-            <a className="contact-item" href="https://maps.google.com/?q=Avenida+Bernardo+Say%C3%A3o+6324+Centro+Ceres+GO" target="_blank" rel="noopener">
-              <div className="contact-item-icon"><IconPin /></div>
-              <div className="contact-item-body">
-                <dt>Endereço</dt>
-                <dd>Av. Bernardo Sayão, 6324 — Centro<br />Ceres — GO &middot; CEP 76.300-188</dd>
-              </div>
-            </a>
-            <div className="contact-item">
-              <div className="contact-item-icon"><IconClock /></div>
-              <div className="contact-item-body">
-                <dt>Atendimento</dt>
-                <dd>Segunda a sexta &middot; 08h–18h<br />Com hora marcada</dd>
-              </div>
-            </div>
-          </dl>
-
+    <section className="section section--soft" id="contato">
+      <div className="container contact-grid">
+        <div className="contact-copy">
+          <SectionIntro
+            kicker="Contato"
+            title="Agende sua consulta"
+          >
+            Envie sua mensagem por WhatsApp ou e-mail. Em até 24 horas você
+            recebe orientação preliminar sobre o caso.
+          </SectionIntro>
+          <a
+            className="btn btn--primary"
+            href="https://wa.me/5562981132872?text=Ol%C3%A1%2C%20gostaria%20de%20agendar%20uma%20consulta."
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Falar no WhatsApp <IconArrowRight />
+          </a>
         </div>
+        <ul className="contact-list">
+          <li>
+            <a href="https://wa.me/5562981132872" target="_blank" rel="noopener noreferrer">
+              <IconWhatsapp />
+              <span>
+                <strong>WhatsApp</strong>
+                (62) 98113-2872
+              </span>
+            </a>
+          </li>
+          <li>
+            <a href="mailto:adv.joaohonorio@gmail.com">
+              <IconMail />
+              <span>
+                <strong>E-mail</strong>
+                adv.joaohonorio@gmail.com
+              </span>
+            </a>
+          </li>
+          <li>
+            <a href="https://www.instagram.com/joaohonorio.adv/" target="_blank" rel="noopener noreferrer">
+              <IconInstagram />
+              <span>
+                <strong>Instagram</strong>
+                @joaohonorio.adv
+              </span>
+            </a>
+          </li>
+          <li>
+            <a href="https://maps.google.com/?q=Avenida+Bernardo+Say%C3%A3o+6324+Centro+Ceres+GO" target="_blank" rel="noopener noreferrer">
+              <IconPin />
+              <span>
+                <strong>Endereço</strong>
+                Av. Bernardo Sayão, 6324 — Centro, Ceres/GO
+              </span>
+            </a>
+          </li>
+          <li>
+            <div className="contact-static">
+              <IconClock />
+              <span>
+                <strong>Horário</strong>
+                Segunda a sexta, 8h–18h · com hora marcada
+              </span>
+            </div>
+          </li>
+        </ul>
       </div>
     </section>
   );
 }
 
-// ─── Map ─────────────────────────────────────────────────────────────
 function MapSection() {
   return (
-    <section className="map-section section" id="endereco">
-      <div className="container">
-        <div className="map-inner">
-          <div className="map-card">
-            <span className="eyebrow">Visite o escritório</span>
-            <h3 className="display">Centro de Ceres &mdash; GO</h3>
-            <p>
-              Av. Bernardo Sayão, n° 6324<br />
-              Centro &middot; Ceres &mdash; Goiás<br />
-              CEP 76.300-188
-            </p>
-            <a className="btn btn-primary" href="https://maps.google.com/?q=Avenida+Bernardo+Say%C3%A3o+6324+Centro+Ceres+GO" target="_blank" rel="noopener">
-              Abrir no Google Maps <IconArrowUpRight />
-            </a>
-          </div>
-          <iframe
-            title="Mapa do escritório"
-            className="map-iframe"
-            src="https://maps.google.com/maps?q=Avenida%20Bernardo%20Say%C3%A3o%206324%20Centro%20Ceres%20GO&t=&z=15&ie=UTF8&iwloc=&output=embed"
-            loading="lazy"
-            referrerPolicy="no-referrer-when-downgrade"
-          />
+    <section className="section map-section" id="endereco">
+      <div className="container map-panel">
+        <div className="map-panel__info">
+          <p className="kicker">Localização</p>
+          <h2 className="section-intro__title">Visite o escritório</h2>
+          <p>
+            Av. Bernardo Sayão, nº 6324<br />
+            Centro · Ceres — GO<br />
+            CEP 76300-188
+          </p>
+          <a
+            className="btn btn--outline"
+            href="https://maps.google.com/?q=Avenida+Bernardo+Say%C3%A3o+6324+Centro+Ceres+GO"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Abrir no Google Maps <IconArrowUpRight />
+          </a>
         </div>
+        <iframe
+          title="Mapa — Escritório Dr. João Paulo Honório"
+          className="map-panel__frame"
+          src="https://maps.google.com/maps?q=Avenida%20Bernardo%20Say%C3%A3o%206324%20Centro%20Ceres%20GO&t=&z=15&ie=UTF8&iwloc=&output=embed"
+          loading="lazy"
+          referrerPolicy="no-referrer-when-downgrade"
+        />
       </div>
     </section>
   );
 }
 
-// ─── Footer ─────────────────────────────────────────────────────────
 function Footer() {
   return (
-    <footer className="footer">
-      <div className="container">
-        <div className="footer-grid">
-          <div className="footer-brand">
-            <img src="assets/logo-jp.svg" alt="JP" />
-            <span className="footer-brand-name">Dr. João Paulo Honório</span>
-            <span className="footer-brand-tag">Consultoria Jurídica</span>
-            <p>
-              Atuação personalizada em Direito Trabalhista, Previdenciário,
-              Tributário, Cível e Família e Sucessões. Ceres — GO &amp; online.
-            </p>
-          </div>
-          <div className="footer-col">
-            <h5>Áreas</h5>
-            <ul>
-              {AREAS.map((a) => <li key={a.title}><a href="#areas">{a.title}</a></li>)}
-            </ul>
-          </div>
-          <div className="footer-col">
-            <h5>Escritório</h5>
-            <ul>
-              <li><a href="#sobre">Sobre</a></li>
-              <li><a href="#metodo">Método</a></li>
-              <li><a href="#depoimentos">Depoimentos</a></li>
-              <li><a href="#contato">Contato</a></li>
-            </ul>
-          </div>
-          <div className="footer-col">
-            <h5>Contato</h5>
-            <ul>
-              <li>(62) 98113-2872</li>
-              <li>adv.joaohonorio@gmail.com</li>
-              <li>@joaohonorio.adv</li>
-              <li>Av. Bernardo Sayão, 6324<br />Centro, Ceres — GO</li>
-            </ul>
-          </div>
+    <footer className="site-footer">
+      <div className="container site-footer__grid">
+        <div className="site-footer__brand">
+          <img src="/assets/logo-jp.svg" alt="" width={48} height={48} />
+          <p className="site-footer__name">Dr. João Paulo Honório</p>
+          <p className="site-footer__tag">Consultoria Jurídica · Ceres/GO</p>
+          <p className="site-footer__desc">
+            Trabalhista, Previdenciário, Tributário, Cível e Família e Sucessões.
+          </p>
         </div>
-        <div className="footer-bottom">
-          <span>© 2026 Dr. João Paulo Honório da Silva. Todos os direitos reservados. by SkyDev</span>
-          <span className="oab">OAB/GO 77627</span>
+        <nav className="site-footer__col" aria-label="Áreas">
+          <h3>Áreas</h3>
+          <ul>
+            {AREAS.map((a) => (
+              <li key={a.title}><a href="#areas">{a.title}</a></li>
+            ))}
+          </ul>
+        </nav>
+        <nav className="site-footer__col" aria-label="Escritório">
+          <h3>Escritório</h3>
+          <ul>
+            <li><a href="#sobre">Sobre</a></li>
+            <li><a href="#metodo">Atendimento</a></li>
+            <li><a href="#depoimentos">Depoimentos</a></li>
+            <li><a href="#contato">Contato</a></li>
+          </ul>
+        </nav>
+        <div className="site-footer__col">
+          <h3>Contato</h3>
+          <ul className="site-footer__contact">
+            <li>(62) 98113-2872</li>
+            <li>adv.joaohonorio@gmail.com</li>
+            <li>@joaohonorio.adv</li>
+          </ul>
         </div>
+      </div>
+      <div className="container site-footer__bottom">
+        <span>© {new Date().getFullYear()} Dr. João Paulo Honório da Silva</span>
+        <span>OAB/GO 77627</span>
       </div>
     </footer>
   );
 }
 
-// ─── Floating Social Buttons ─────────────────────────────────────────
 function WhatsappFloat() {
   return (
-    <div className="float-buttons">
-      <a
-        className="float-btn float-insta"
-        href="https://www.instagram.com/joaohonorio.adv/"
-        target="_blank"
-        rel="noopener"
-        aria-label="Instagram"
-      >
-        <IconInstagram />
-      </a>
-      <a
-        className="float-btn float-wpp"
-        href="https://wa.me/5562981132872?text=Ol%C3%A1%2C%20gostaria%20de%20agendar%20uma%20consulta."
-        target="_blank"
-        rel="noopener"
-        aria-label="WhatsApp"
-      >
-        <IconWhatsapp />
-      </a>
-    </div>
+    <a
+      className="whatsapp-float"
+      href="https://wa.me/5562981132872?text=Ol%C3%A1%2C%20gostaria%20de%20agendar%20uma%20consulta."
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label="WhatsApp"
+    >
+      <IconWhatsapp />
+    </a>
   );
 }
 
 export {
-  Header, Hero, Marquee, Areas, About, Method, Testimonials, Contact, MapSection, Footer, WhatsappFloat,
+  Header,
+  Hero,
+  Areas,
+  About,
+  Method,
+  Testimonials,
+  Contact,
+  MapSection,
+  Footer,
+  WhatsappFloat,
 };

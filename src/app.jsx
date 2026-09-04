@@ -1,7 +1,6 @@
 import {
   Header,
   Hero,
-  Marquee,
   Areas,
   About,
   Method,
@@ -14,11 +13,10 @@ import {
 
 export default function App() {
   return (
-    <div className="hl-italic">
+    <>
       <Header />
       <main>
         <Hero />
-        <Marquee />
         <Areas />
         <About />
         <Method />
@@ -28,6 +26,6 @@ export default function App() {
       </main>
       <Footer />
       <WhatsappFloat />
-    </div>
+    </>
   );
 }
