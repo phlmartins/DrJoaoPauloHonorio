@@ -121,8 +121,8 @@ function Header() {
               src={LOGO_MARK_SRC}
               alt=""
               className="site-brand__mark"
-              width={218}
-              height={189}
+              width={503}
+              height={787}
             />
           </span>
           <span className="site-brand__text">
@@ -494,8 +494,8 @@ function Footer() {
                 src={LOGO_MARK_SRC}
                 alt=""
                 className="site-footer__mark"
-                width={218}
-                height={189}
+                width={503}
+                height={787}
               />
             </span>
             <div>

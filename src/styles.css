@@ -147,14 +147,8 @@ ul, ol { list-style: none; }
 .site-brand__mark-wrap,
 .site-footer__mark-wrap {
   display: inline-flex;
-  background: var(--bg);
   line-height: 0;
-  border-radius: 3px;
   flex-shrink: 0;
-}
-
-.site-header.is-scrolled .site-brand__mark-wrap {
-  background: var(--header-scrolled);
 }
 
 .site-brand__mark {
