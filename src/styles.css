@@ -5,6 +5,7 @@
 html {
   scroll-behavior: smooth;
   scroll-padding-top: 84px;
+  overflow-x: clip;
 }
 
 body {
@@ -15,6 +16,8 @@ body {
   color: var(--text);
   background: var(--bg);
   -webkit-font-smoothing: antialiased;
+  overflow-x: clip;
+  max-width: 100%;
 }
 
 img { display: block; max-width: 100%; height: auto; }
@@ -136,15 +139,39 @@ ul, ol { list-style: none; }
 .site-brand {
   display: flex;
   align-items: center;
+  gap: 12px;
   min-width: 0;
+  flex-shrink: 1;
+}
+
+.site-brand__mark {
+  display: block;
+  height: clamp(38px, 4.8vw, 48px);
+  width: auto;
   flex-shrink: 0;
 }
 
-.site-brand__logo {
-  display: block;
-  height: clamp(38px, 4.8vw, 52px);
-  width: auto;
-  max-width: min(240px, 58vw);
+.site-brand__text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.2;
+  min-width: 0;
+}
+
+.site-brand__name {
+  font-family: var(--font-display);
+  font-size: clamp(0.9rem, 2vw, 1.05rem);
+  font-weight: 500;
+  color: var(--preto-suave);
+  white-space: nowrap;
+}
+
+.site-brand__tag {
+  font-size: 10px;
+  font-weight: var(--font-weight-medium);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--text-mute);
 }
 
 .site-nav {
@@ -677,11 +704,24 @@ ul, ol { list-style: none; }
   margin-bottom: 40px;
 }
 
-.site-footer__logo {
+.site-footer__brand-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.site-footer__mark {
   display: block;
   height: 52px;
   width: auto;
-  max-width: 220px;
+  flex-shrink: 0;
+}
+
+.site-footer__name {
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  font-weight: 500;
+  color: var(--preto-suave);
 }
 
 .site-footer__tag {
@@ -689,7 +729,7 @@ ul, ol { list-style: none; }
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--gold-deep);
-  margin-top: 14px;
+  margin-top: 4px;
 }
 
 .site-footer__desc {
@@ -704,11 +744,13 @@ ul, ol { list-style: none; }
   display: flex;
   gap: 12px;
   margin-top: 20px;
+  overflow: hidden;
 }
 
 .site-footer__social .social-float {
   width: 44px;
   height: 44px;
+  flex-shrink: 0;
 }
 
 .site-footer__social .social-float svg {
@@ -757,6 +799,11 @@ ul, ol { list-style: none; }
   display: flex;
   flex-direction: column;
   gap: 12px;
+  pointer-events: none;
+}
+
+.social-floats .social-float {
+  pointer-events: auto;
 }
 
 .social-float {
@@ -785,7 +832,12 @@ ul, ol { list-style: none; }
   box-shadow: 0 8px 24px color-mix(in srgb, #dd2a7b 30%, transparent);
 }
 
-/* Pulsação sutil nos ícones sociais */
+/* Pulsação sutil — só box-shadow, sem scale (evita scroll horizontal) */
+.icon-pulse {
+  position: relative;
+  isolation: isolate;
+}
+
 .icon-pulse::before {
   content: "";
   position: absolute;
@@ -797,24 +849,8 @@ ul, ol { list-style: none; }
 
 .icon-pulse--delay::before { animation-delay: 1.2s; }
 
-.icon-pulse--whatsapp::before {
-  box-shadow: 0 0 0 0 color-mix(in srgb, #25d366 55%, transparent);
-}
-
-.icon-pulse--instagram::before {
-  box-shadow: 0 0 0 0 color-mix(in srgb, #dd2a7b 50%, transparent);
-}
-
 .social-float.icon-pulse::before {
   border-radius: 50%;
-}
-
-.social-float--whatsapp.icon-pulse::before {
-  box-shadow: 0 0 0 0 color-mix(in srgb, #25d366 60%, transparent);
-}
-
-.social-float--instagram.icon-pulse::before {
-  box-shadow: 0 0 0 0 color-mix(in srgb, #dd2a7b 55%, transparent);
 }
 
 .icon-pulse--inline {
@@ -825,11 +861,6 @@ ul, ol { list-style: none; }
   width: 20px;
   height: 20px;
   border-radius: 50%;
-}
-
-.icon-pulse--inline::before {
-  border-radius: 50%;
-  box-shadow: 0 0 0 0 color-mix(in srgb, #dd2a7b 45%, transparent);
 }
 
 .contact-list .icon-pulse {
@@ -851,15 +882,38 @@ ul, ol { list-style: none; }
 .contact-list .icon-pulse--whatsapp { color: #25d366; }
 .contact-list .icon-pulse--instagram { color: #c13584; }
 
+.social-float--whatsapp.icon-pulse::before {
+  animation-name: icon-pulse-whatsapp;
+}
+
+.social-float--instagram.icon-pulse::before {
+  animation-name: icon-pulse-instagram;
+}
+
+.icon-pulse--whatsapp::before,
+.contact-list .icon-pulse--whatsapp::before {
+  animation-name: icon-pulse-whatsapp;
+}
+
+.icon-pulse--instagram::before,
+.icon-pulse--inline.icon-pulse--instagram::before,
+.contact-list .icon-pulse--instagram::before {
+  animation-name: icon-pulse-instagram;
+}
+
+@keyframes icon-pulse-whatsapp {
+  0% { box-shadow: 0 0 0 0 color-mix(in srgb, #25d366 50%, transparent); opacity: 0.7; }
+  70%, 100% { box-shadow: 0 0 0 12px transparent; opacity: 0; }
+}
+
+@keyframes icon-pulse-instagram {
+  0% { box-shadow: 0 0 0 0 color-mix(in srgb, #dd2a7b 45%, transparent); opacity: 0.7; }
+  70%, 100% { box-shadow: 0 0 0 12px transparent; opacity: 0; }
+}
+
 @keyframes icon-pulse-ring {
-  0% {
-    transform: scale(1);
-    opacity: 0.75;
-  }
-  70%, 100% {
-    transform: scale(1.55);
-    opacity: 0;
-  }
+  0% { opacity: 0.6; }
+  70%, 100% { opacity: 0; }
 }
 
 /* ── Responsivo ─────────────────────────────────────────────────── */
@@ -910,9 +964,12 @@ ul, ol { list-style: none; }
 
   .site-nav-mobile .btn { margin-top: 12px; align-self: flex-start; }
 
-  .site-brand__logo {
+  .site-brand__mark {
     height: 36px;
-    max-width: min(200px, 62vw);
+  }
+
+  .site-brand__name {
+    font-size: 0.88rem;
   }
 
   .hero { padding-top: calc(76px + 32px); }

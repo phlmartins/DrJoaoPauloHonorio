@@ -19,7 +19,7 @@ const WHATSAPP_URL =
   'https://wa.me/5562981132872?text=Ol%C3%A1%2C%20gostaria%20de%20agendar%20uma%20consulta.';
 const INSTAGRAM_URL = 'https://www.instagram.com/joaohonorio.adv/';
 const INSTAGRAM_POST_URL = 'https://www.instagram.com/p/DZIpksPJvR9/';
-const LOGO_SRC = '/assets/logo-honorio.png';
+const LOGO_MARK_SRC = '/assets/logo-monogram.png';
 
 const NAV_LINKS = [
   { href: '#areas', label: 'Áreas' },
@@ -117,12 +117,16 @@ function Header() {
       <div className="container site-header__inner">
         <a className="site-brand" href="#top" onClick={close}>
           <img
-            src={LOGO_SRC}
-            alt="Dr. João Paulo Honório — Consultoria Jurídica"
-            className="site-brand__logo"
-            width={255}
-            height={72}
+            src={LOGO_MARK_SRC}
+            alt=""
+            className="site-brand__mark"
+            width={218}
+            height={189}
           />
+          <span className="site-brand__text">
+            <span className="site-brand__name">Dr. João Paulo Honório</span>
+            <span className="site-brand__tag">Consultoria Jurídica</span>
+          </span>
         </a>
         <nav className="site-nav" aria-label="Principal">
           {NAV_LINKS.map((l) => (
@@ -479,14 +483,19 @@ function Footer() {
     <footer className="site-footer">
       <div className="container site-footer__grid">
         <div className="site-footer__brand">
-          <img
-            src={LOGO_SRC}
-            alt="Dr. João Paulo Honório — Consultoria Jurídica"
-            className="site-footer__logo"
-            width={255}
-            height={72}
-          />
-          <p className="site-footer__tag">Ceres/GO · OAB/GO 77627</p>
+          <div className="site-footer__brand-row">
+            <img
+              src={LOGO_MARK_SRC}
+              alt=""
+              className="site-footer__mark"
+              width={218}
+              height={189}
+            />
+            <div>
+              <p className="site-footer__name">Dr. João Paulo Honório</p>
+              <p className="site-footer__tag">Consultoria Jurídica · Ceres/GO</p>
+            </div>
+          </div>
           <p className="site-footer__desc">
             Trabalhista, Previdenciário, Tributário, Cível e Família e Sucessões.
           </p>
