@@ -136,30 +136,15 @@ ul, ol { list-style: none; }
 .site-brand {
   display: flex;
   align-items: center;
-  gap: 12px;
   min-width: 0;
+  flex-shrink: 0;
 }
 
-.site-brand__text {
-  display: flex;
-  flex-direction: column;
-  line-height: 1.2;
-}
-
-.site-brand__name {
-  font-family: var(--font-display);
-  font-size: 1.05rem;
-  font-weight: 500;
-  color: var(--preto-suave);
-  white-space: nowrap;
-}
-
-.site-brand__tag {
-  font-size: 10px;
-  font-weight: var(--font-weight-medium);
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: var(--text-mute);
+.site-brand__logo {
+  display: block;
+  height: clamp(38px, 4.8vw, 52px);
+  width: auto;
+  max-width: min(240px, 58vw);
 }
 
 .site-nav {
@@ -206,9 +191,98 @@ ul, ol { list-style: none; }
 
 .hero__grid {
   display: grid;
-  grid-template-columns: 1.1fr 0.9fr;
-  gap: 48px;
+  grid-template-columns: 1.05fr 0.95fr;
+  gap: clamp(32px, 5vw, 56px);
   align-items: center;
+}
+
+.hero__portrait {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 18px;
+}
+
+.portrait-card {
+  margin: 0;
+  width: 100%;
+  max-width: 440px;
+}
+
+.portrait-card__frame {
+  position: relative;
+  padding: 10px;
+  background: var(--bg-card);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  box-shadow: var(--shadow-soft);
+}
+
+.portrait-card__frame::before {
+  content: "";
+  position: absolute;
+  inset: 6px;
+  border: 1px solid color-mix(in srgb, var(--gold) 40%, transparent);
+  border-radius: 8px;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.portrait-card__frame img {
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: cover;
+  object-position: center 12%;
+  border-radius: 6px;
+}
+
+.portrait-card__caption {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding: 20px 12px 4px;
+  text-align: center;
+}
+
+.portrait-card__caption strong {
+  font-family: var(--font-display);
+  font-size: clamp(1.25rem, 2.5vw, 1.5rem);
+  font-weight: 500;
+  color: var(--preto-suave);
+}
+
+.portrait-card__caption span {
+  font-size: 13px;
+  color: var(--text-mute);
+}
+
+.portrait-card__caption em {
+  font-style: normal;
+  font-size: 11px;
+  font-weight: var(--font-weight-medium);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--gold-deep);
+  margin-top: 6px;
+}
+
+.portrait-card__link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  font-weight: var(--font-weight-medium);
+  color: var(--text-dim);
+  transition: color 0.2s ease;
+}
+
+.portrait-card__link:hover { color: var(--gold-deep); }
+
+.portrait-card__link .icon-pulse--inline {
+  width: 24px;
+  height: 24px;
+  color: #c13584;
 }
 
 .hero__title {
@@ -237,7 +311,8 @@ ul, ol { list-style: none; }
 
 .hero__facts {
   display: grid;
-  gap: 16px;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px 24px;
   padding-top: 24px;
   border-top: 1px solid var(--line-soft);
 }
@@ -254,59 +329,6 @@ ul, ol { list-style: none; }
 .hero__facts dd {
   font-size: 15px;
   color: var(--text);
-}
-
-.hero__card {
-  background: var(--bg-card);
-  border: 1px solid var(--line-soft);
-  border-radius: 8px;
-  padding: 32px 28px;
-  box-shadow: var(--shadow-soft);
-}
-
-.hero__card-logo {
-  width: 72px;
-  margin: 0 auto 20px;
-}
-
-.hero__card-name {
-  font-family: var(--font-display);
-  font-size: 1.35rem;
-  font-weight: 500;
-  text-align: center;
-  color: var(--preto-suave);
-}
-
-.hero__card-role {
-  font-size: 13px;
-  text-align: center;
-  color: var(--text-mute);
-  margin-top: 6px;
-}
-
-.hero__card-rule {
-  border: 0;
-  border-top: 1px solid var(--line-soft);
-  margin: 24px 0;
-}
-
-.hero__card-list {
-  display: grid;
-  gap: 14px;
-}
-
-.hero__card-list dt {
-  font-size: 11px;
-  font-weight: var(--font-weight-medium);
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--text-mute);
-}
-
-.hero__card-list dd {
-  font-size: 15px;
-  color: var(--text);
-  margin-top: 2px;
 }
 
 /* ── Seções ─────────────────────────────────────────────────────── */
@@ -568,12 +590,29 @@ ul, ol { list-style: none; }
 
 .contact-list a:hover { background: var(--surface-hover); }
 
+.contact-list a > svg {
+  color: var(--gold-deep);
+}
+
 .contact-list svg {
   width: 20px;
   height: 20px;
-  color: var(--gold-deep);
   flex-shrink: 0;
   margin-top: 2px;
+}
+
+.contact-list .icon-pulse {
+  width: 36px;
+  height: 36px;
+  margin-top: 0;
+  flex-shrink: 0;
+}
+
+.contact-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: center;
 }
 
 .contact-list strong {
@@ -638,12 +677,11 @@ ul, ol { list-style: none; }
   margin-bottom: 40px;
 }
 
-.site-footer__name {
-  font-family: var(--font-display);
-  font-size: 1.25rem;
-  font-weight: 500;
-  color: var(--preto-suave);
-  margin-top: 14px;
+.site-footer__logo {
+  display: block;
+  height: 52px;
+  width: auto;
+  max-width: 220px;
 }
 
 .site-footer__tag {
@@ -651,7 +689,7 @@ ul, ol { list-style: none; }
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--gold-deep);
-  margin-top: 4px;
+  margin-top: 14px;
 }
 
 .site-footer__desc {
@@ -660,6 +698,22 @@ ul, ol { list-style: none; }
   margin-top: 14px;
   max-width: 28ch;
   line-height: 1.65;
+}
+
+.site-footer__social {
+  display: flex;
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.site-footer__social .social-float {
+  width: 44px;
+  height: 44px;
+}
+
+.site-footer__social .social-float svg {
+  width: 22px;
+  height: 22px;
 }
 
 .site-footer__col h3 {
@@ -693,27 +747,120 @@ ul, ol { list-style: none; }
   color: var(--text-mute);
 }
 
-/* ── WhatsApp flutuante ─────────────────────────────────────────── */
+/* ── Redes sociais flutuantes ───────────────────────────────────── */
 
-.whatsapp-float {
+.social-floats {
   position: fixed;
   right: 24px;
   bottom: 24px;
   z-index: 90;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.social-float {
+  position: relative;
   width: 52px;
   height: 52px;
   display: flex;
   align-items: center;
   justify-content: center;
   border-radius: 50%;
-  background: #25d366;
   color: #fff;
-  box-shadow: 0 8px 24px color-mix(in srgb, #25d366 35%, transparent);
+  box-shadow: 0 8px 24px color-mix(in srgb, var(--grafite) 18%, transparent);
   transition: transform 0.2s ease;
 }
 
-.whatsapp-float:hover { transform: translateY(-2px); }
-.whatsapp-float svg { width: 26px; height: 26px; }
+.social-float:hover { transform: translateY(-2px); }
+.social-float svg { width: 26px; height: 26px; position: relative; z-index: 1; }
+
+.social-float--whatsapp {
+  background: #25d366;
+  box-shadow: 0 8px 24px color-mix(in srgb, #25d366 35%, transparent);
+}
+
+.social-float--instagram {
+  background: linear-gradient(135deg, #f58529 0%, #dd2a7b 50%, #8134af 100%);
+  box-shadow: 0 8px 24px color-mix(in srgb, #dd2a7b 30%, transparent);
+}
+
+/* Pulsação sutil nos ícones sociais */
+.icon-pulse::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  animation: icon-pulse-ring 2.4s ease-out infinite;
+  pointer-events: none;
+}
+
+.icon-pulse--delay::before { animation-delay: 1.2s; }
+
+.icon-pulse--whatsapp::before {
+  box-shadow: 0 0 0 0 color-mix(in srgb, #25d366 55%, transparent);
+}
+
+.icon-pulse--instagram::before {
+  box-shadow: 0 0 0 0 color-mix(in srgb, #dd2a7b 50%, transparent);
+}
+
+.social-float.icon-pulse::before {
+  border-radius: 50%;
+}
+
+.social-float--whatsapp.icon-pulse::before {
+  box-shadow: 0 0 0 0 color-mix(in srgb, #25d366 60%, transparent);
+}
+
+.social-float--instagram.icon-pulse::before {
+  box-shadow: 0 0 0 0 color-mix(in srgb, #dd2a7b 55%, transparent);
+}
+
+.icon-pulse--inline {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+}
+
+.icon-pulse--inline::before {
+  border-radius: 50%;
+  box-shadow: 0 0 0 0 color-mix(in srgb, #dd2a7b 45%, transparent);
+}
+
+.contact-list .icon-pulse {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  color: var(--gold-deep);
+}
+
+.contact-list .icon-pulse svg {
+  width: 20px;
+  height: 20px;
+  margin-top: 0;
+  position: relative;
+  z-index: 1;
+}
+
+.contact-list .icon-pulse--whatsapp { color: #25d366; }
+.contact-list .icon-pulse--instagram { color: #c13584; }
+
+@keyframes icon-pulse-ring {
+  0% {
+    transform: scale(1);
+    opacity: 0.75;
+  }
+  70%, 100% {
+    transform: scale(1.55);
+    opacity: 0;
+  }
+}
 
 /* ── Responsivo ─────────────────────────────────────────────────── */
 
@@ -763,9 +910,22 @@ ul, ol { list-style: none; }
 
   .site-nav-mobile .btn { margin-top: 12px; align-self: flex-start; }
 
-  .site-brand__name { font-size: 0.95rem; }
+  .site-brand__logo {
+    height: 36px;
+    max-width: min(200px, 62vw);
+  }
 
   .hero { padding-top: calc(76px + 32px); }
+
+  .hero__portrait {
+    order: -1;
+    max-width: 360px;
+    margin-inline: auto;
+  }
+
+  .hero__facts {
+    grid-template-columns: 1fr 1fr;
+  }
 
   .areas-grid,
   .steps,
@@ -780,9 +940,13 @@ ul, ol { list-style: none; }
     align-items: flex-start;
   }
 
-  .whatsapp-float {
+  .social-floats {
     right: 16px;
     bottom: 16px;
+    gap: 10px;
+  }
+
+  .social-float {
     width: 48px;
     height: 48px;
   }

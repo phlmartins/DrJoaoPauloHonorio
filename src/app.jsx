@@ -8,7 +8,7 @@ import {
   Contact,
   MapSection,
   Footer,
-  WhatsappFloat,
+  SocialFloats,
 } from './sections.jsx';
 
 export default function App() {
@@ -25,7 +25,7 @@ export default function App() {
         <MapSection />
       </main>
       <Footer />
-      <WhatsappFloat />
+      <SocialFloats />
     </>
   );
 }

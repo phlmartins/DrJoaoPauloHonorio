@@ -15,6 +15,12 @@ import {
   IconWhatsapp,
 } from './icons.jsx';
 
+const WHATSAPP_URL =
+  'https://wa.me/5562981132872?text=Ol%C3%A1%2C%20gostaria%20de%20agendar%20uma%20consulta.';
+const INSTAGRAM_URL = 'https://www.instagram.com/joaohonorio.adv/';
+const INSTAGRAM_POST_URL = 'https://www.instagram.com/p/DZIpksPJvR9/';
+const LOGO_SRC = '/assets/logo-honorio.png';
+
 const NAV_LINKS = [
   { href: '#areas', label: 'Áreas' },
   { href: '#sobre', label: 'Sobre' },
@@ -110,11 +116,13 @@ function Header() {
     <header className={scrolled || open ? 'site-header is-scrolled' : 'site-header'}>
       <div className="container site-header__inner">
         <a className="site-brand" href="#top" onClick={close}>
-          <img src="/assets/logo-jp.svg" alt="" width={40} height={40} />
-          <span className="site-brand__text">
-            <span className="site-brand__name">Dr. João Paulo Honório</span>
-            <span className="site-brand__tag">Consultoria Jurídica</span>
-          </span>
+          <img
+            src={LOGO_SRC}
+            alt="Dr. João Paulo Honório — Consultoria Jurídica"
+            className="site-brand__logo"
+            width={255}
+            height={72}
+          />
         </a>
         <nav className="site-nav" aria-label="Principal">
           {NAV_LINKS.map((l) => (
@@ -179,27 +187,39 @@ function Hero() {
               <dt>Retorno</dt>
               <dd>Até 24 horas úteis</dd>
             </div>
-          </dl>
-        </div>
-        <aside className="hero__card" aria-label="Informações do escritório">
-          <img src="/assets/logo-jp.svg" alt="" className="hero__card-logo" />
-          <p className="hero__card-name">João Paulo Honório da Silva</p>
-          <p className="hero__card-role">Advogado · Consultoria Jurídica</p>
-          <hr className="hero__card-rule" />
-          <dl className="hero__card-list">
-            <div>
-              <dt>OAB</dt>
-              <dd>77627 / GO</dd>
-            </div>
-            <div>
-              <dt>Atendimento</dt>
-              <dd>Seg–Sex, 8h–18h</dd>
-            </div>
             <div>
               <dt>WhatsApp</dt>
               <dd>(62) 98113-2872</dd>
             </div>
           </dl>
+        </div>
+        <aside className="hero__portrait" aria-label="Dr. João Paulo Honório">
+          <figure className="portrait-card">
+            <div className="portrait-card__frame">
+              <img
+                src="/assets/dr-joao-paulo.jpg"
+                alt="Dr. João Paulo Honório da Silva — Advogado, OAB/GO 77627"
+                width={480}
+                height={480}
+              />
+            </div>
+            <figcaption className="portrait-card__caption">
+              <strong>João Paulo Honório da Silva</strong>
+              <span>Advogado · Consultoria Jurídica</span>
+              <em>OAB/GO 77627</em>
+            </figcaption>
+          </figure>
+          <a
+            className="portrait-card__link"
+            href={INSTAGRAM_POST_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <span className="icon-pulse icon-pulse--inline icon-pulse--instagram">
+              <IconInstagram />
+            </span>
+            Siga @joaohonorio.adv
+          </a>
         </aside>
       </div>
     </section>
@@ -343,19 +363,34 @@ function Contact() {
             Envie sua mensagem por WhatsApp ou e-mail. Em até 24 horas você
             recebe orientação preliminar sobre o caso.
           </SectionIntro>
-          <a
-            className="btn btn--primary"
-            href="https://wa.me/5562981132872?text=Ol%C3%A1%2C%20gostaria%20de%20agendar%20uma%20consulta."
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Falar no WhatsApp <IconArrowRight />
-          </a>
+          <div className="contact-actions">
+            <a
+              className="btn btn--primary"
+              href={WHATSAPP_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Falar no WhatsApp <IconArrowRight />
+            </a>
+            <a
+              className="btn btn--outline"
+              href={INSTAGRAM_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <span className="icon-pulse icon-pulse--inline">
+                <IconInstagram />
+              </span>
+              @joaohonorio.adv
+            </a>
+          </div>
         </div>
         <ul className="contact-list">
           <li>
-            <a href="https://wa.me/5562981132872" target="_blank" rel="noopener noreferrer">
-              <IconWhatsapp />
+            <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer">
+              <span className="icon-pulse icon-pulse--whatsapp" aria-hidden="true">
+                <IconWhatsapp />
+              </span>
               <span>
                 <strong>WhatsApp</strong>
                 (62) 98113-2872
@@ -372,8 +407,10 @@ function Contact() {
             </a>
           </li>
           <li>
-            <a href="https://www.instagram.com/joaohonorio.adv/" target="_blank" rel="noopener noreferrer">
-              <IconInstagram />
+            <a href={INSTAGRAM_URL} target="_blank" rel="noopener noreferrer">
+              <span className="icon-pulse icon-pulse--instagram" aria-hidden="true">
+                <IconInstagram />
+              </span>
               <span>
                 <strong>Instagram</strong>
                 @joaohonorio.adv
@@ -442,12 +479,37 @@ function Footer() {
     <footer className="site-footer">
       <div className="container site-footer__grid">
         <div className="site-footer__brand">
-          <img src="/assets/logo-jp.svg" alt="" width={48} height={48} />
-          <p className="site-footer__name">Dr. João Paulo Honório</p>
-          <p className="site-footer__tag">Consultoria Jurídica · Ceres/GO</p>
+          <img
+            src={LOGO_SRC}
+            alt="Dr. João Paulo Honório — Consultoria Jurídica"
+            className="site-footer__logo"
+            width={255}
+            height={72}
+          />
+          <p className="site-footer__tag">Ceres/GO · OAB/GO 77627</p>
           <p className="site-footer__desc">
             Trabalhista, Previdenciário, Tributário, Cível e Família e Sucessões.
           </p>
+          <div className="site-footer__social">
+            <a
+              className="social-float social-float--whatsapp icon-pulse"
+              href={WHATSAPP_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="WhatsApp"
+            >
+              <IconWhatsapp />
+            </a>
+            <a
+              className="social-float social-float--instagram icon-pulse icon-pulse--delay"
+              href={INSTAGRAM_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Instagram @joaohonorio.adv"
+            >
+              <IconInstagram />
+            </a>
+          </div>
         </div>
         <nav className="site-footer__col" aria-label="Áreas">
           <h3>Áreas</h3>
@@ -471,7 +533,11 @@ function Footer() {
           <ul className="site-footer__contact">
             <li>(62) 98113-2872</li>
             <li>adv.joaohonorio@gmail.com</li>
-            <li>@joaohonorio.adv</li>
+            <li>
+              <a href={INSTAGRAM_URL} target="_blank" rel="noopener noreferrer">
+                @joaohonorio.adv
+              </a>
+            </li>
           </ul>
         </div>
       </div>
@@ -483,17 +549,28 @@ function Footer() {
   );
 }
 
-function WhatsappFloat() {
+function SocialFloats() {
   return (
-    <a
-      className="whatsapp-float"
-      href="https://wa.me/5562981132872?text=Ol%C3%A1%2C%20gostaria%20de%20agendar%20uma%20consulta."
-      target="_blank"
-      rel="noopener noreferrer"
-      aria-label="WhatsApp"
-    >
-      <IconWhatsapp />
-    </a>
+    <div className="social-floats" aria-label="Redes sociais">
+      <a
+        className="social-float social-float--whatsapp icon-pulse"
+        href={WHATSAPP_URL}
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="WhatsApp"
+      >
+        <IconWhatsapp />
+      </a>
+      <a
+        className="social-float social-float--instagram icon-pulse icon-pulse--delay"
+        href={INSTAGRAM_URL}
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Instagram @joaohonorio.adv"
+      >
+        <IconInstagram />
+      </a>
+    </div>
   );
 }
 
@@ -507,5 +584,5 @@ export {
   Contact,
   MapSection,
   Footer,
-  WhatsappFloat,
+  SocialFloats,
 };
