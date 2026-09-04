@@ -16,7 +16,7 @@ import {
 } from './icons.jsx';
 
 const WHATSAPP_URL =
-  'https://wa.me/5562981132872?text=Ol%C3%A1%2C%20gostaria%20de%20agendar%20uma%20consulta.';
+  'https://wa.me/5562981132872?text=Ol%C3%A1%20Dr.%20Jo%C3%A3o%20Paulo%2C%20gostaria%20de%20agendar%20uma%20consulta';
 const INSTAGRAM_URL = 'https://www.instagram.com/joaohonorio.adv/';
 const INSTAGRAM_POST_URL = 'https://www.instagram.com/p/DZIpksPJvR9/';
 const LOGO_MARK_SRC = '/assets/logo-monogram.png';
