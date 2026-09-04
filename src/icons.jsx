@@ -127,8 +127,8 @@ const IconClock = (props) => (
   </svg>
 );
 
-Object.assign(window, {
+export {
   IconScales, IconShield, IconBriefcase, IconHearth, IconCalendar,
   IconArrowRight, IconArrowUpRight, IconWhatsapp, IconPhone, IconMail,
   IconInstagram, IconPin, IconCheck, IconMenu, IconQuote, IconGavel, IconClock,
-});
+};

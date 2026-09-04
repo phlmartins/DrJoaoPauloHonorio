@@ -1,18 +1,50 @@
-// Page sections. Each is a small composable component used by App.
+import { useEffect, useState } from 'react';
+import {
+  IconArrowRight,
+  IconArrowUpRight,
+  IconBriefcase,
+  IconClock,
+  IconGavel,
+  IconHearth,
+  IconInstagram,
+  IconMail,
+  IconMenu,
+  IconPin,
+  IconScales,
+  IconShield,
+  IconWhatsapp,
+} from './icons.jsx';
+
+const NAV_LINKS = [
+  { href: '#areas', label: 'Áreas de atuação' },
+  { href: '#sobre', label: 'Sobre' },
+  { href: '#metodo', label: 'Método' },
+  { href: '#contato', label: 'Contato' },
+];
 
 // ─── Header ──────────────────────────────────────────────────────────
-function Header({ t }) {
-  const [scrolled, setScrolled] = React.useState(false);
-  React.useEffect(() => {
+function Header() {
+  const [scrolled, setScrolled] = useState(false);
+  const [open, setOpen] = useState(false);
+
+  useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40);
     onScroll();
     window.addEventListener('scroll', onScroll, { passive: true });
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
+
+  useEffect(() => {
+    document.body.style.overflow = open ? 'hidden' : '';
+    return () => { document.body.style.overflow = ''; };
+  }, [open]);
+
+  const close = () => setOpen(false);
+
   return (
-    <header className={scrolled ? 'hdr scrolled' : 'hdr'}>
+    <header className={scrolled || open ? 'hdr scrolled' : 'hdr'}>
       <div className="container hdr-inner">
-        <a className="hdr-brand" href="#top">
+        <a className="hdr-brand" href="#top" onClick={close}>
           <img src="assets/logo-jp.svg" alt="JP" />
           <span className="hdr-brand-text">
             <span className="hdr-brand-name">Dr. João Paulo Honório</span>
@@ -20,25 +52,39 @@ function Header({ t }) {
           </span>
         </a>
         <nav className="hdr-nav">
-          <a href="#areas">Áreas de atuação</a>
-          <a href="#sobre">Sobre</a>
-          <a href="#metodo">Método</a>
-          <a href="#contato">Contato</a>
+          {NAV_LINKS.map((l) => (
+            <a key={l.href} href={l.href}>{l.label}</a>
+          ))}
         </nav>
         <a className="hdr-cta" href="#contato">
           <span className="hdr-cta-label">Agendar consulta</span>
           <IconArrowRight />
         </a>
-        <button className="menu-btn" aria-label="Menu">
+        <button
+          className="menu-btn"
+          aria-label={open ? 'Fechar menu' : 'Abrir menu'}
+          aria-expanded={open}
+          onClick={() => setOpen((v) => !v)}
+        >
           <IconMenu />
         </button>
       </div>
+      {open && (
+        <nav className="hdr-nav-mobile" aria-label="Menu">
+          {NAV_LINKS.map((l) => (
+            <a key={l.href} href={l.href} onClick={close}>{l.label}</a>
+          ))}
+          <a className="btn btn-primary" href="#contato" onClick={close}>
+            Agendar consulta <IconArrowRight />
+          </a>
+        </nav>
+      )}
     </header>
   );
 }
 
 // ─── Hero ────────────────────────────────────────────────────────────
-function Hero({ t }) {
+function Hero() {
   return (
     <section className="hero" id="top">
       <div className="hero-monogram-bg" aria-hidden="true">
@@ -490,7 +536,7 @@ function Footer() {
             <ul>
               <li>(62) 98113-2872</li>
               <li>adv.joaohonorio@gmail.com</li>
-              <li>@jpconsultoriajuridica</li>
+              <li>@joaohonorio.adv</li>
               <li>Av. Bernardo Sayão, 6324<br />Centro, Ceres — GO</li>
             </ul>
           </div>
@@ -530,6 +576,6 @@ function WhatsappFloat() {
   );
 }
 
-Object.assign(window, {
+export {
   Header, Hero, Marquee, Areas, About, Method, Testimonials, Contact, MapSection, Footer, WhatsappFloat,
-});
+};

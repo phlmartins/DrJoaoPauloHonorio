@@ -1,0 +1,61 @@
+/**
+ * Design System — Dr. João Paulo Honório · Consultoria Jurídica
+ *
+ * Referência rápida:
+ *   Fundo: #F7F3EC | Bege: #E8DED0 | Dourado: #C59636 | Grafite: #33312F
+ *   Título: Cormorant Garamond | Texto: Montserrat
+ */
+
+:root {
+  /* ── Paleta oficial ─────────────────────────────────────────────── */
+  --marfim: #F7F3EC;
+  --bege-areia: #E8DED0;
+  --bege-medio: #D7C5AD;
+  --dourado: #C59636;
+  --dourado-escuro: #A97923;
+  --grafite: #33312F;
+  --preto-suave: #222222;
+
+  /* ── Semântica de superfície ────────────────────────────────────── */
+  --bg: var(--marfim);
+  --bg-elev: var(--bege-areia);
+  --bg-card: #ffffff;
+  --bg-contrast: var(--bege-areia);
+  --bg-accent: linear-gradient(160deg, var(--bege-areia) 0%, var(--bege-medio) 100%);
+  --surface-hover: color-mix(in srgb, var(--bege-areia) 88%, var(--bege-medio));
+
+  /* ── Cor de marca ───────────────────────────────────────────────── */
+  --gold: var(--dourado);
+  --gold-light: #d4ab4a;
+  --gold-deep: var(--dourado-escuro);
+
+  /* ── Tipografia ─────────────────────────────────────────────────── */
+  --font-display: "Cormorant Garamond", "Bodoni Moda", Georgia, "Times New Roman", serif;
+  --font-sans: "Montserrat", system-ui, -apple-system, sans-serif;
+  --font-label: var(--font-sans);
+  --font-mono: var(--font-sans);
+  --font-weight-body: 400;
+  --font-weight-medium: 500;
+  --font-weight-highlight: 600;
+
+  /* ── Texto ──────────────────────────────────────────────────────── */
+  --text: var(--grafite);
+  --text-dim: color-mix(in srgb, var(--grafite) 72%, transparent);
+  --text-mute: color-mix(in srgb, var(--grafite) 52%, transparent);
+  --cream: var(--preto-suave);
+  --on-gold: #ffffff;
+
+  /* ── Bordas e divisores ─────────────────────────────────────────── */
+  --line: color-mix(in srgb, var(--dourado) 24%, transparent);
+  --line-soft: color-mix(in srgb, var(--grafite) 10%, transparent);
+
+  /* ── Layout ─────────────────────────────────────────────────────── */
+  --max: 1320px;
+  --pad: clamp(20px, 4vw, 64px);
+
+  /* ── UI ─────────────────────────────────────────────────────────── */
+  --header-scrolled: color-mix(in srgb, var(--marfim) 90%, transparent);
+  --header-mobile: color-mix(in srgb, var(--marfim) 96%, transparent);
+  --shadow-soft: 0 18px 48px color-mix(in srgb, var(--grafite) 8%, transparent);
+  --gold-glow: color-mix(in srgb, var(--dourado) 8%, transparent);
+}
