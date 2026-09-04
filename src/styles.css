@@ -843,14 +843,19 @@ ul, ol { list-style: none; }
   position: absolute;
   inset: 0;
   border-radius: inherit;
-  animation: icon-pulse-ring 2.4s ease-out infinite;
+  animation: icon-pulse-ring 2s ease-out infinite;
   pointer-events: none;
 }
 
-.icon-pulse--delay::before { animation-delay: 1.2s; }
+.icon-pulse--delay::before { animation-delay: 1s; }
 
 .social-float.icon-pulse::before {
   border-radius: 50%;
+  animation-duration: 1.9s;
+}
+
+.contact-list .icon-pulse::before {
+  animation-duration: 2.1s;
 }
 
 .icon-pulse--inline {
@@ -902,13 +907,33 @@ ul, ol { list-style: none; }
 }
 
 @keyframes icon-pulse-whatsapp {
-  0% { box-shadow: 0 0 0 0 color-mix(in srgb, #25d366 50%, transparent); opacity: 0.7; }
-  70%, 100% { box-shadow: 0 0 0 12px transparent; opacity: 0; }
+  0% {
+    box-shadow: 0 0 0 0 color-mix(in srgb, #25d366 70%, transparent);
+    opacity: 0.9;
+  }
+  45% {
+    box-shadow: 0 0 0 10px color-mix(in srgb, #25d366 30%, transparent);
+    opacity: 0.55;
+  }
+  100% {
+    box-shadow: 0 0 0 22px transparent;
+    opacity: 0;
+  }
 }
 
 @keyframes icon-pulse-instagram {
-  0% { box-shadow: 0 0 0 0 color-mix(in srgb, #dd2a7b 45%, transparent); opacity: 0.7; }
-  70%, 100% { box-shadow: 0 0 0 12px transparent; opacity: 0; }
+  0% {
+    box-shadow: 0 0 0 0 color-mix(in srgb, #dd2a7b 65%, transparent);
+    opacity: 0.9;
+  }
+  45% {
+    box-shadow: 0 0 0 10px color-mix(in srgb, #dd2a7b 28%, transparent);
+    opacity: 0.55;
+  }
+  100% {
+    box-shadow: 0 0 0 22px transparent;
+    opacity: 0;
+  }
 }
 
 @keyframes icon-pulse-ring {
