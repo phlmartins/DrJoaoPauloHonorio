@@ -4,7 +4,7 @@
 
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: 84px;
+  scroll-padding-top: 96px;
   overflow-x: clip;
 }
 
@@ -133,45 +133,65 @@ ul, ol { list-style: none; }
   display: flex;
   align-items: center;
   gap: 24px;
-  min-height: 76px;
+  min-height: 88px;
 }
 
 .site-brand {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 14px;
   min-width: 0;
   flex-shrink: 1;
 }
 
+.site-brand__mark-wrap,
+.site-footer__mark-wrap {
+  display: inline-flex;
+  background: var(--bg);
+  line-height: 0;
+  border-radius: 3px;
+  flex-shrink: 0;
+}
+
+.site-header.is-scrolled .site-brand__mark-wrap {
+  background: var(--header-scrolled);
+}
+
 .site-brand__mark {
   display: block;
-  height: clamp(38px, 4.8vw, 48px);
+  height: clamp(48px, 6vw, 64px);
   width: auto;
-  flex-shrink: 0;
 }
 
 .site-brand__text {
   display: flex;
   flex-direction: column;
-  line-height: 1.2;
+  gap: 3px;
+  line-height: 1.15;
   min-width: 0;
 }
 
 .site-brand__name {
   font-family: var(--font-display);
-  font-size: clamp(0.9rem, 2vw, 1.05rem);
+  font-size: clamp(1.1rem, 2.6vw, 1.45rem);
   font-weight: 500;
   color: var(--preto-suave);
   white-space: nowrap;
 }
 
+.site-brand__dr {
+  font-size: 1.35em;
+  font-weight: 600;
+  color: var(--gold-deep);
+  letter-spacing: 0.02em;
+}
+
 .site-brand__tag {
-  font-size: 10px;
+  font-size: 11px;
   font-weight: var(--font-weight-medium);
-  letter-spacing: 0.16em;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: var(--text-mute);
+  color: var(--text-dim);
 }
 
 .site-nav {
@@ -211,7 +231,7 @@ ul, ol { list-style: none; }
 /* ── Hero ───────────────────────────────────────────────────────── */
 
 .hero {
-  padding: calc(76px + 56px) 0 72px;
+  padding: calc(88px + 56px) 0 72px;
   background:
     linear-gradient(180deg, var(--marfim) 0%, color-mix(in srgb, var(--bege-areia) 35%, var(--marfim)) 100%);
 }
@@ -712,16 +732,23 @@ ul, ol { list-style: none; }
 
 .site-footer__mark {
   display: block;
-  height: 52px;
+  height: 58px;
   width: auto;
   flex-shrink: 0;
 }
 
 .site-footer__name {
   font-family: var(--font-display);
-  font-size: 1.15rem;
+  font-size: 1.3rem;
   font-weight: 500;
   color: var(--preto-suave);
+  line-height: 1.15;
+}
+
+.site-footer__dr {
+  font-size: 1.3em;
+  font-weight: 600;
+  color: var(--gold-deep);
 }
 
 .site-footer__tag {
@@ -990,14 +1017,18 @@ ul, ol { list-style: none; }
   .site-nav-mobile .btn { margin-top: 12px; align-self: flex-start; }
 
   .site-brand__mark {
-    height: 36px;
+    height: 42px;
   }
 
   .site-brand__name {
-    font-size: 0.88rem;
+    font-size: 0.98rem;
   }
 
-  .hero { padding-top: calc(76px + 32px); }
+  .site-brand__dr {
+    font-size: 1.28em;
+  }
+
+  .hero { padding-top: calc(88px + 32px); }
 
   .hero__portrait {
     order: -1;

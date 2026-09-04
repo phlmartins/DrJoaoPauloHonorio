@@ -116,15 +116,20 @@ function Header() {
     <header className={scrolled || open ? 'site-header is-scrolled' : 'site-header'}>
       <div className="container site-header__inner">
         <a className="site-brand" href="#top" onClick={close}>
-          <img
-            src={LOGO_MARK_SRC}
-            alt=""
-            className="site-brand__mark"
-            width={218}
-            height={189}
-          />
+          <span className="site-brand__mark-wrap">
+            <img
+              src={LOGO_MARK_SRC}
+              alt=""
+              className="site-brand__mark"
+              width={218}
+              height={189}
+            />
+          </span>
           <span className="site-brand__text">
-            <span className="site-brand__name">Dr. João Paulo Honório</span>
+            <span className="site-brand__name">
+              <span className="site-brand__dr">Dr.</span>
+              {' '}João Paulo Honório
+            </span>
             <span className="site-brand__tag">Consultoria Jurídica</span>
           </span>
         </a>
@@ -484,15 +489,20 @@ function Footer() {
       <div className="container site-footer__grid">
         <div className="site-footer__brand">
           <div className="site-footer__brand-row">
-            <img
-              src={LOGO_MARK_SRC}
-              alt=""
-              className="site-footer__mark"
-              width={218}
-              height={189}
-            />
+            <span className="site-footer__mark-wrap">
+              <img
+                src={LOGO_MARK_SRC}
+                alt=""
+                className="site-footer__mark"
+                width={218}
+                height={189}
+              />
+            </span>
             <div>
-              <p className="site-footer__name">Dr. João Paulo Honório</p>
+              <p className="site-footer__name">
+                <span className="site-footer__dr">Dr.</span>
+                {' '}João Paulo Honório
+              </p>
               <p className="site-footer__tag">Consultoria Jurídica · Ceres/GO</p>
             </div>
           </div>
