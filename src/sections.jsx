@@ -503,26 +503,6 @@ function Footer() {
           <p className="site-footer__desc">
             Trabalhista, Previdenciário, Tributário, Cível e Família e Sucessões.
           </p>
-          <div className="site-footer__social">
-            <a
-              className="social-float social-float--whatsapp icon-pulse"
-              href={WHATSAPP_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="WhatsApp"
-            >
-              <IconWhatsapp />
-            </a>
-            <a
-              className="social-float social-float--instagram icon-pulse icon-pulse--delay"
-              href={INSTAGRAM_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Instagram @joaohonorio.adv"
-            >
-              <IconInstagram />
-            </a>
-          </div>
         </div>
         <nav className="site-footer__col" aria-label="Áreas">
           <h3>Áreas</h3>
