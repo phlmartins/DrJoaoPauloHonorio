@@ -359,6 +359,16 @@ function Testimonials() {
   );
 }
 
+function formatPhoneBr(value) {
+  const digits = value.replace(/\D/g, '').slice(0, 11);
+  if (digits.length <= 2) return digits ? `(${digits}` : '';
+  if (digits.length <= 3) return `(${digits.slice(0, 2)}) ${digits.slice(2)}`;
+  if (digits.length <= 7) {
+    return `(${digits.slice(0, 2)}) ${digits.slice(2, 3)} ${digits.slice(3)}`;
+  }
+  return `(${digits.slice(0, 2)}) ${digits.slice(2, 3)} ${digits.slice(3, 7)}-${digits.slice(7)}`;
+}
+
 function ContactForm() {
   const [form, setForm] = useState({
     name: '',
@@ -371,6 +381,10 @@ function ContactForm() {
 
   const update = (field) => (e) => {
     setForm((prev) => ({ ...prev, [field]: e.target.value }));
+  };
+
+  const handlePhoneChange = (e) => {
+    setForm((prev) => ({ ...prev, phone: formatPhoneBr(e.target.value) }));
   };
 
   const handleSubmit = async (e) => {
@@ -433,8 +447,11 @@ function ContactForm() {
             type="tel"
             name="phone"
             value={form.phone}
-            onChange={update('phone')}
+            onChange={handlePhoneChange}
             autoComplete="tel"
+            inputMode="numeric"
+            placeholder="(62) 9 9999-8989"
+            maxLength={16}
           />
         </label>
         <label className="field field--full">
