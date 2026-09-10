@@ -1,6 +1,10 @@
 import { Resend } from 'resend';
 
-const resend = new Resend(process.env.RESEND_API_KEY);
+function getResendClient() {
+  const apiKey = process.env.RESEND_API_KEY;
+  if (!apiKey) return null;
+  return new Resend(apiKey);
+}
 
 const ALLOWED_ORIGINS = [
   'https://jphonorio.adv.br',
@@ -38,11 +42,11 @@ export default async function handler(req, res) {
     return res.status(405).json({ error: 'Método não permitido.' });
   }
 
-  const apiKey = process.env.RESEND_API_KEY;
   const from = process.env.RESEND_FROM;
   const to = process.env.RESEND_TO;
+  const resend = getResendClient();
 
-  if (!apiKey || !from || !to) {
+  if (!resend || !from || !to) {
     return res.status(500).json({ error: 'Serviço de e-mail não configurado.' });
   }
 

@@ -20,7 +20,7 @@ const WHATSAPP_URL =
 const INSTAGRAM_URL = 'https://www.instagram.com/joaohonorio.adv/';
 const INSTAGRAM_POST_URL = 'https://www.instagram.com/p/DZIpksPJvR9/';
 const LOGO_MARK_SRC = '/assets/logo-monogram.png';
-const CONTACT_EMAIL = 'adv@jphonorio.adv.br';
+const CONTACT_EMAIL = 'joaohonorio.advocacia@gmail.com';
 const CONTACT_API = import.meta.env.VITE_CONTACT_API_URL ?? '';
 
 const NAV_LINKS = [
