@@ -668,11 +668,27 @@ ul, ol { list-style: none; }
   margin-top: 2px;
 }
 
-.contact-list .icon-pulse {
-  width: 36px;
-  height: 36px;
-  margin-top: 0;
+.contact-list__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   flex-shrink: 0;
+}
+
+.contact-list__icon svg {
+  width: 20px;
+  height: 20px;
+  margin-top: 0;
+}
+
+.contact-list__icon--whatsapp,
+.contact-list__icon--whatsapp svg {
+  color: #25d366;
+}
+
+.contact-list__icon--instagram,
+.contact-list__icon--instagram svg {
+  color: #c13584;
 }
 
 .contact-actions {
@@ -986,25 +1002,6 @@ ul, ol { list-style: none; }
   border-radius: 50%;
 }
 
-.contact-list .icon-pulse {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 50%;
-  color: var(--gold-deep);
-}
-
-.contact-list .icon-pulse svg {
-  width: 20px;
-  height: 20px;
-  margin-top: 0;
-  position: relative;
-  z-index: 1;
-}
-
-.contact-list .icon-pulse--whatsapp { color: #25d366; }
-.contact-list .icon-pulse--instagram { color: #c13584; }
-
 .social-float--whatsapp.icon-pulse::before {
   animation-name: icon-pulse-whatsapp;
 }
@@ -1013,14 +1010,12 @@ ul, ol { list-style: none; }
   animation-name: icon-pulse-instagram;
 }
 
-.icon-pulse--whatsapp::before,
-.contact-list .icon-pulse--whatsapp::before {
+.icon-pulse--whatsapp::before {
   animation-name: icon-pulse-whatsapp;
 }
 
 .icon-pulse--instagram::before,
-.icon-pulse--inline.icon-pulse--instagram::before,
-.contact-list .icon-pulse--instagram::before {
+.icon-pulse--inline.icon-pulse--instagram::before {
   animation-name: icon-pulse-instagram;
 }
 

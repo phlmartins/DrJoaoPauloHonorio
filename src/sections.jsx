@@ -558,7 +558,7 @@ function Contact() {
         <ul className="contact-list">
           <li>
             <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer">
-              <span className="icon-pulse icon-pulse--whatsapp" aria-hidden="true">
+              <span className="contact-list__icon contact-list__icon--whatsapp" aria-hidden="true">
                 <IconWhatsapp />
               </span>
               <span>
@@ -578,7 +578,7 @@ function Contact() {
           </li>
           <li>
             <a href={INSTAGRAM_URL} target="_blank" rel="noopener noreferrer">
-              <span className="icon-pulse icon-pulse--instagram" aria-hidden="true">
+              <span className="contact-list__icon contact-list__icon--instagram" aria-hidden="true">
                 <IconInstagram />
               </span>
               <span>
