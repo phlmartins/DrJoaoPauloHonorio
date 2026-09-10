@@ -4,7 +4,8 @@ import {
   Areas,
   About,
   Method,
-  Testimonials,
+  Commitment,
+  Faq,
   Contact,
   MapSection,
   Footer,
@@ -20,7 +21,8 @@ export default function App() {
         <Areas />
         <About />
         <Method />
-        <Testimonials />
+        <Commitment />
+        <Faq />
         <Contact />
         <MapSection />
       </main>

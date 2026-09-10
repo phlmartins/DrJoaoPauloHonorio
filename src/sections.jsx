@@ -24,9 +24,10 @@ const CONTACT_EMAIL = 'contato@jphonorio.adv.br';
 const CONTACT_API = import.meta.env.VITE_CONTACT_API_URL ?? '';
 
 const NAV_LINKS = [
-  { href: '#areas', label: 'Áreas' },
+  { href: '#top', label: 'Início' },
+  { href: '#areas', label: 'Áreas de atuação' },
   { href: '#sobre', label: 'Sobre' },
-  { href: '#metodo', label: 'Atendimento' },
+  { href: '#como-funciona', label: 'Como funciona' },
   { href: '#contato', label: 'Contato' },
 ];
 
@@ -35,64 +36,93 @@ const AREAS = [
     icon: IconBriefcase,
     title: 'Trabalhista',
     description:
-      'Defesa do trabalhador e do empregador. Vínculos, verbas rescisórias, horas extras e acordos.',
+      'Orientação para trabalhadores e empregadores em casos de verbas rescisórias, horas extras, reconhecimento de vínculo, rescisão indireta, justa causa, acordos e outros conflitos de trabalho.',
   },
   {
     icon: IconShield,
-    title: 'Previdenciária',
+    title: 'Previdenciário',
     description:
-      'Aposentadoria, BPC/LOAS, auxílios e revisão de benefícios junto ao INSS.',
+      'Aposentadorias, BPC/LOAS, auxílio por incapacidade, auxílio-acidente, salário-maternidade, revisões e acompanhamento de benefícios do INSS.',
   },
   {
     icon: IconScales,
-    title: 'Tributária',
+    title: 'Tributário',
     description:
-      'Recuperação de créditos, execuções fiscais, parcelamentos e planejamento tributário.',
+      'Orientação sobre dívidas e cobranças fiscais, parcelamentos, defesa em processos tributários, recuperação de créditos e organização tributária.',
   },
   {
     icon: IconHearth,
     title: 'Família e Sucessões',
     description:
-      'Divórcio, guarda, alimentos, inventário e testamento.',
+      'Divórcio, guarda dos filhos, pensão alimentícia, união estável, inventário, partilha de bens e testamento.',
   },
   {
     icon: IconGavel,
-    title: 'Cível',
+    title: 'Cível e Consumidor',
     description:
-      'Contratos, responsabilidade civil, consumidor e ações indenizatórias.',
+      'Contratos, cobranças indevidas, problemas nas relações de consumo, responsabilidade civil, obrigações e pedidos de indenização.',
   },
 ];
 
 const STEPS = [
   {
-    title: 'Escuta e diagnóstico',
-    body: 'Você conta o caso e recebe uma leitura jurídica preliminar, com clareza sobre caminhos possíveis.',
+    title: 'Conte o seu caso',
+    body: 'Você explica a situação e apresenta as principais dúvidas e preocupações.',
   },
   {
-    title: 'Estratégia por escrito',
-    body: 'Honorários, prazos e próximos passos definidos antes de qualquer movimentação.',
+    title: 'Análise e orientação',
+    body: 'Os documentos e as informações são analisados para identificar os caminhos juridicamente possíveis.',
   },
   {
-    title: 'Acompanhamento direto',
-    body: 'Atendimento com o advogado responsável e retorno por WhatsApp a cada andamento relevante.',
+    title: 'Definição da atuação',
+    body: 'Antes de qualquer medida, são apresentados os próximos passos, os honorários, os prazos estimados e os riscos envolvidos.',
+  },
+  {
+    title: 'Acompanhamento',
+    body: 'Se houver contratação, o cliente recebe informações sobre as movimentações relevantes e pode esclarecer suas dúvidas diretamente com o escritório.',
   },
 ];
 
-const TESTIS = [
+const COMMITMENTS = [
   {
-    quote: 'Fui tratado como prioridade do início ao fim, com retorno em cada etapa do processo.',
-    name: 'Marcos R.',
-    caseLabel: 'Aposentadoria por idade',
+    title: 'Clareza desde o início',
+    body: 'Explicações simples sobre as possibilidades, os riscos e as etapas do caso.',
   },
   {
-    quote: 'Conduziu nosso inventário com calma e transparência em um momento difícil para a família.',
-    name: 'Ana P.',
-    caseLabel: 'Inventário e partilha',
+    title: 'Comunicação responsável',
+    body: 'Informações sobre as movimentações relevantes, sem promessas ou expectativas irreais.',
   },
   {
-    quote: 'Encontramos créditos tributários que desconhecíamos. Atendimento sério e objetivo.',
-    name: 'L. C.',
-    caseLabel: 'Recuperação tributária',
+    title: 'Decisões conscientes',
+    body: 'Antes de qualquer medida, você recebe as informações necessárias para decidir com segurança.',
+  },
+];
+
+const FAQ_ITEMS = [
+  {
+    question: 'O atendimento é somente em Ceres?',
+    answer:
+      'Não. O escritório realiza atendimentos presenciais em Ceres/GO e também oferece atendimento online.',
+  },
+  {
+    question: 'Preciso apresentar documentos no primeiro contato?',
+    answer:
+      'Se você já tiver documentos relacionados ao caso, poderá encaminhá-los para facilitar a análise. O escritório também informará quais outros documentos serão necessários.',
+  },
+  {
+    question: 'Como são informados os honorários?',
+    answer:
+      'Os honorários e as condições de pagamento são apresentados antes do início da atuação e formalizados em contrato.',
+  },
+  {
+    question: 'Entrar em contato significa que preciso contratar?',
+    answer:
+      'Não. O primeiro contato serve para organizar o atendimento e verificar a forma adequada de análise da situação.',
+  },
+  {
+    question: 'Existe garantia de resultado?',
+    answer:
+      'Não. O resultado depende dos fatos, dos documentos, da legislação aplicável e da análise das autoridades responsáveis. O compromisso do escritório é atuar com responsabilidade, transparência e dedicação.',
   },
 ];
 
@@ -137,8 +167,8 @@ function Header() {
             <a key={l.href} href={l.href}>{l.label}</a>
           ))}
         </nav>
-        <a className="btn btn--outline site-header__cta" href="#contato">
-          Agendar consulta
+        <a className="btn btn--outline site-header__cta" href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer">
+          Falar com o escritório
         </a>
         <button
           type="button"
@@ -155,8 +185,8 @@ function Header() {
           {NAV_LINKS.map((l) => (
             <a key={l.href} href={l.href} onClick={close}>{l.label}</a>
           ))}
-          <a className="btn btn--primary" href="#contato" onClick={close}>
-            Agendar consulta
+          <a className="btn btn--primary" href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" onClick={close}>
+            Falar com o escritório
           </a>
         </nav>
       )}
@@ -169,35 +199,35 @@ function Hero() {
     <section className="hero" id="top">
       <div className="container hero__grid">
         <div className="hero__copy">
-          <p className="kicker">Ceres — GO · OAB/GO 77627</p>
+          <p className="kicker">Ceres — GO · Atendimento presencial e online</p>
           <h1 className="hero__title">
-            Consultoria jurídica com atendimento direto e estratégia clara.
+            Orientação jurídica clara para decisões importantes
           </h1>
           <p className="hero__lead">
-            Atuação em Trabalhista, Previdenciário, Tributário, Cível e Família
-            e Sucessões. Você fala com o advogado responsável — do primeiro
-            contato à condução do caso.
+            Atendimento direto com o advogado responsável, análise individual do
+            caso e explicações simples sobre as possibilidades, os riscos e os
+            próximos passos.
           </p>
           <div className="hero__actions">
-            <a className="btn btn--primary" href="#contato">
-              Agendar consulta <IconArrowRight />
+            <a className="btn btn--primary" href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer">
+              Falar com o escritório <IconArrowRight />
             </a>
             <a className="btn btn--ghost" href="#areas">
-              Ver áreas de atuação
+              Conhecer áreas de atuação
             </a>
           </div>
           <dl className="hero__facts">
             <div>
-              <dt>Endereço</dt>
-              <dd>Av. Bernardo Sayão, 6324 — Ceres/GO</dd>
+              <dt>Presencial</dt>
+              <dd>Atendimento em Ceres/GO</dd>
+            </div>
+            <div>
+              <dt>Online</dt>
+              <dd>Atendimento à distância</dd>
             </div>
             <div>
               <dt>Retorno</dt>
-              <dd>Até 24 horas úteis</dd>
-            </div>
-            <div>
-              <dt>WhatsApp</dt>
-              <dd>(62) 98113-2872</dd>
+              <dd>Em até 1 dia útil</dd>
             </div>
           </dl>
         </div>
@@ -213,8 +243,8 @@ function Hero() {
             </div>
             <figcaption className="portrait-card__caption">
               <strong>João Paulo Honório da Silva</strong>
-              <span>Advogado · Consultoria Jurídica</span>
-              <em>OAB/GO 77627</em>
+              <span>Advogado · OAB/GO 77.627</span>
+              <em>Atendimento presencial e online</em>
             </figcaption>
           </figure>
           <a
@@ -250,10 +280,10 @@ function Areas() {
       <div className="container">
         <SectionIntro
           kicker="Áreas de atuação"
-          title="Cinco frentes de prática jurídica"
+          title="Atuação jurídica para pessoas, famílias e empresas"
         >
-          Atuação concentrada em demandas do dia a dia de pessoas e empresas,
-          com estudo do caso antes de qualquer movimentação.
+          Cada situação é analisada individualmente, com orientação clara sobre
+          os direitos envolvidos e as medidas que podem ser adotadas.
         </SectionIntro>
         <div className="areas-grid">
           {AREAS.map((area) => {
@@ -285,22 +315,27 @@ function About() {
         <div className="about-copy">
           <SectionIntro
             kicker="Sobre o escritório"
-            title="Advocacia próxima, com método e transparência"
+            title="Atendimento pessoal, comunicação clara e responsabilidade"
           />
           <p>
-            Dr. João Paulo Honório da Silva é advogado inscrito na OAB/GO 77627,
-            com atuação consultiva e contenciosa. O escritório mantém carteira
-            enxuta para garantir atendimento pessoal em cada demanda.
+            O escritório é conduzido pelo advogado João Paulo Honório da Silva,
+            inscrito na OAB/GO sob o nº 77.627, com atuação preventiva e judicial.
+          </p>
+          <p>
+            Cada atendimento começa pela compreensão da situação do cliente.
+            Depois da análise, são apresentados os caminhos possíveis, os riscos,
+            os custos e as etapas necessárias.
           </p>
           <ul className="check-list">
             <li>Atendimento direto com o advogado responsável</li>
-            <li>Estratégia e honorários definidos por escrito</li>
-            <li>Atualizações por WhatsApp nos andamentos relevantes</li>
-            <li>Consulta inicial sem compromisso</li>
+            <li>Análise individual de cada caso</li>
+            <li>Explicações em linguagem simples</li>
+            <li>Honorários e condições apresentados por escrito</li>
+            <li>Informações sobre as movimentações relevantes do processo</li>
           </ul>
           <p className="about-sign">
-            <strong>J. P. Honório</strong>
-            <span>Advogado · OAB/GO 77627</span>
+            <strong>João Paulo Honório da Silva</strong>
+            <span>Advogado · OAB/GO 77.627</span>
           </p>
         </div>
       </div>
@@ -310,14 +345,14 @@ function About() {
 
 function Method() {
   return (
-    <section className="section section--soft" id="metodo">
+    <section className="section section--soft" id="como-funciona">
       <div className="container">
         <SectionIntro
-          kicker="Atendimento"
-          title="Como conduzimos cada caso"
+          kicker="Como funciona"
+          title="Você entende o caminho antes de decidir"
         >
-          O trabalho começa pela escuta. Só depois vem a movimentação — sempre
-          com clareza sobre prazos, custos e próximos passos.
+          O atendimento começa pela compreensão do problema. Depois, o caso é
+          analisado e as possibilidades são explicadas com clareza.
         </SectionIntro>
         <ol className="steps">
           {STEPS.map((step, i) => (
@@ -333,25 +368,38 @@ function Method() {
   );
 }
 
-function Testimonials() {
+function Commitment() {
   return (
-    <section className="section" id="depoimentos">
+    <section className="section" id="compromisso">
       <div className="container">
         <SectionIntro
-          kicker="Depoimentos"
-          title="A confiança de quem já foi atendido"
-        >
-          Relatos reais. Nomes resguardados quando o cliente preferiu.
-        </SectionIntro>
-        <div className="testimonials-grid">
-          {TESTIS.map((t) => (
-            <blockquote className="quote-card" key={t.name}>
-              <p>{t.quote}</p>
-              <footer>
-                <cite>{t.name}</cite>
-                <span>{t.caseLabel}</span>
-              </footer>
-            </blockquote>
+          kicker="Compromisso com o cliente"
+          title="O que você pode esperar do atendimento"
+        />
+        <div className="commitment-grid">
+          {COMMITMENTS.map((item) => (
+            <article className="commitment-card" key={item.title}>
+              <h3>{item.title}</h3>
+              <p>{item.body}</p>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function Faq() {
+  return (
+    <section className="section section--soft" id="duvidas">
+      <div className="container">
+        <SectionIntro kicker="Dúvidas frequentes" title="Perguntas comuns antes do contato" />
+        <div className="faq-list">
+          {FAQ_ITEMS.map((item) => (
+            <details className="faq-item" key={item.question}>
+              <summary>{item.question}</summary>
+              <p>{item.answer}</p>
+            </details>
           ))}
         </div>
       </div>
@@ -408,7 +456,7 @@ function ContactForm() {
       if (!res.ok) throw new Error(data.error || 'Não foi possível enviar.');
 
       setStatus('success');
-      setFeedback('Mensagem enviada. Retorno em até 24 horas úteis.');
+      setFeedback('Mensagem enviada. Retorno em até 1 dia útil.');
       setForm({ name: '', email: '', phone: '', message: '' });
     } catch (err) {
       setStatus('error');
@@ -490,33 +538,22 @@ function Contact() {
         <div className="contact-copy">
           <SectionIntro
             kicker="Contato"
-            title="Agende sua consulta"
+            title="Fale com o escritório"
           >
-            Envie sua mensagem pelo formulário, WhatsApp ou e-mail. Em até 24 horas você
-            recebe orientação preliminar sobre o caso.
+            Envie uma mensagem pelo WhatsApp com seu nome e um breve resumo da situação.
+            O retorno será realizado em até 1 dia útil para organizar o atendimento.
           </SectionIntro>
-          <ContactForm />
-          <div className="contact-actions">
+          <div className="contact-actions contact-actions--lead">
             <a
               className="btn btn--primary"
               href={WHATSAPP_URL}
               target="_blank"
               rel="noopener noreferrer"
             >
-              Falar no WhatsApp <IconArrowRight />
-            </a>
-            <a
-              className="btn btn--outline"
-              href={INSTAGRAM_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <span className="icon-pulse icon-pulse--inline">
-                <IconInstagram />
-              </span>
-              @joaohonorio.adv
+              Iniciar conversa no WhatsApp <IconArrowRight />
             </a>
           </div>
+          <ContactForm />
         </div>
         <ul className="contact-list">
           <li>
@@ -580,10 +617,10 @@ function MapSection() {
       <div className="container map-panel">
         <div className="map-panel__info">
           <p className="kicker">Localização</p>
-          <h2 className="section-intro__title">Visite o escritório</h2>
+          <h2 className="section-intro__title">Atendimento presencial em Ceres</h2>
           <p>
             Av. Bernardo Sayão, nº 6324<br />
-            Centro · Ceres — GO<br />
+            Centro, Ceres — GO<br />
             CEP 76300-188
           </p>
           <a
@@ -592,7 +629,7 @@ function MapSection() {
             target="_blank"
             rel="noopener noreferrer"
           >
-            Abrir no Google Maps <IconArrowUpRight />
+            Ver rota no Google Maps <IconArrowUpRight />
           </a>
         </div>
         <iframe
@@ -623,12 +660,13 @@ function Footer() {
               />
             </span>
             <div>
-              <p className="site-footer__name">Dr. João Paulo Honório</p>
-              <p className="site-footer__tag">Consultoria Jurídica · Ceres/GO</p>
+              <p className="site-footer__name">João Paulo Honório da Silva</p>
+              <p className="site-footer__tag">Advogado · OAB/GO 77.627</p>
             </div>
           </div>
           <p className="site-footer__desc">
-            Trabalhista, Previdenciário, Tributário, Cível e Família e Sucessões.
+            Atendimento presencial em Ceres/GO e online. Trabalhista, Previdenciário,
+            Tributário, Família e Sucessões, Cível e Consumidor.
           </p>
         </div>
         <nav className="site-footer__col" aria-label="Áreas">
@@ -643,27 +681,38 @@ function Footer() {
           <h3>Escritório</h3>
           <ul>
             <li><a href="#sobre">Sobre</a></li>
-            <li><a href="#metodo">Atendimento</a></li>
-            <li><a href="#depoimentos">Depoimentos</a></li>
+            <li><a href="#como-funciona">Como funciona</a></li>
+            <li><a href="#compromisso">Compromisso</a></li>
+            <li><a href="#duvidas">Dúvidas</a></li>
             <li><a href="#contato">Contato</a></li>
           </ul>
         </nav>
         <div className="site-footer__col">
           <h3>Contato</h3>
           <ul className="site-footer__contact">
-            <li>(62) 98113-2872</li>
+            <li>
+              <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer">
+                WhatsApp: (62) 98113-2872
+              </a>
+            </li>
             <li>{CONTACT_EMAIL}</li>
             <li>
               <a href={INSTAGRAM_URL} target="_blank" rel="noopener noreferrer">
-                @joaohonorio.adv
+                Instagram: @joaohonorio.adv
               </a>
             </li>
           </ul>
         </div>
       </div>
+      <div className="container site-footer__legal">
+        <p>
+          Este site possui caráter informativo. Cada situação exige análise individual,
+          e os resultados podem variar de acordo com os fatos e documentos apresentados.
+        </p>
+      </div>
       <div className="container site-footer__bottom">
-        <span>© {new Date().getFullYear()} Dr. João Paulo Honório da Silva</span>
-        <span>OAB/GO 77627</span>
+        <span>© {new Date().getFullYear()} João Paulo Honório da Silva</span>
+        <span>OAB/GO 77.627</span>
       </div>
     </footer>
   );
@@ -700,7 +749,8 @@ export {
   Areas,
   About,
   Method,
-  Testimonials,
+  Commitment,
+  Faq,
   Contact,
   MapSection,
   Footer,
