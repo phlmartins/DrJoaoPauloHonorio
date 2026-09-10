@@ -20,6 +20,8 @@ const WHATSAPP_URL =
 const INSTAGRAM_URL = 'https://www.instagram.com/joaohonorio.adv/';
 const INSTAGRAM_POST_URL = 'https://www.instagram.com/p/DZIpksPJvR9/';
 const LOGO_MARK_SRC = '/assets/logo-monogram.png';
+const CONTACT_EMAIL = 'adv@jphonorio.adv.br';
+const CONTACT_API = import.meta.env.VITE_CONTACT_API_URL ?? '';
 
 const NAV_LINKS = [
   { href: '#areas', label: 'Áreas' },
@@ -357,6 +359,113 @@ function Testimonials() {
   );
 }
 
+function ContactForm() {
+  const [form, setForm] = useState({
+    name: '',
+    email: '',
+    phone: '',
+    message: '',
+  });
+  const [status, setStatus] = useState('idle');
+  const [feedback, setFeedback] = useState('');
+
+  const update = (field) => (e) => {
+    setForm((prev) => ({ ...prev, [field]: e.target.value }));
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    if (!CONTACT_API) {
+      setStatus('error');
+      setFeedback('Formulário em configuração. Use WhatsApp ou e-mail.');
+      return;
+    }
+
+    setStatus('sending');
+    setFeedback('');
+
+    try {
+      const res = await fetch(`${CONTACT_API}/api/contact`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(form),
+      });
+      const data = await res.json().catch(() => ({}));
+      if (!res.ok) throw new Error(data.error || 'Não foi possível enviar.');
+
+      setStatus('success');
+      setFeedback('Mensagem enviada. Retorno em até 24 horas úteis.');
+      setForm({ name: '', email: '', phone: '', message: '' });
+    } catch (err) {
+      setStatus('error');
+      setFeedback(err.message || 'Erro ao enviar. Tente WhatsApp.');
+    }
+  };
+
+  return (
+    <form className="contact-form" onSubmit={handleSubmit} noValidate>
+      <div className="contact-form__grid">
+        <label className="field">
+          <span>Nome</span>
+          <input
+            type="text"
+            name="name"
+            value={form.name}
+            onChange={update('name')}
+            required
+            autoComplete="name"
+          />
+        </label>
+        <label className="field">
+          <span>E-mail</span>
+          <input
+            type="email"
+            name="email"
+            value={form.email}
+            onChange={update('email')}
+            required
+            autoComplete="email"
+          />
+        </label>
+        <label className="field">
+          <span>Telefone</span>
+          <input
+            type="tel"
+            name="phone"
+            value={form.phone}
+            onChange={update('phone')}
+            autoComplete="tel"
+          />
+        </label>
+        <label className="field field--full">
+          <span>Mensagem</span>
+          <textarea
+            name="message"
+            rows={5}
+            value={form.message}
+            onChange={update('message')}
+            required
+          />
+        </label>
+      </div>
+      <div className="contact-form__actions">
+        <button
+          type="submit"
+          className="btn btn--primary"
+          disabled={status === 'sending'}
+        >
+          {status === 'sending' ? 'Enviando…' : 'Enviar mensagem'}
+        </button>
+        {feedback && (
+          <p className={`contact-form__feedback contact-form__feedback--${status}`}>
+            {feedback}
+          </p>
+        )}
+      </div>
+    </form>
+  );
+}
+
 function Contact() {
   return (
     <section className="section section--soft" id="contato">
@@ -366,9 +475,10 @@ function Contact() {
             kicker="Contato"
             title="Agende sua consulta"
           >
-            Envie sua mensagem por WhatsApp ou e-mail. Em até 24 horas você
+            Envie sua mensagem pelo formulário, WhatsApp ou e-mail. Em até 24 horas você
             recebe orientação preliminar sobre o caso.
           </SectionIntro>
+          <ContactForm />
           <div className="contact-actions">
             <a
               className="btn btn--primary"
@@ -404,11 +514,11 @@ function Contact() {
             </a>
           </li>
           <li>
-            <a href="mailto:adv.joaohonorio@gmail.com">
+            <a href={`mailto:${CONTACT_EMAIL}`}>
               <IconMail />
               <span>
                 <strong>E-mail</strong>
-                adv.joaohonorio@gmail.com
+                {CONTACT_EMAIL}
               </span>
             </a>
           </li>
@@ -525,7 +635,7 @@ function Footer() {
           <h3>Contato</h3>
           <ul className="site-footer__contact">
             <li>(62) 98113-2872</li>
-            <li>adv.joaohonorio@gmail.com</li>
+            <li>{CONTACT_EMAIL}</li>
             <li>
               <a href={INSTAGRAM_URL} target="_blank" rel="noopener noreferrer">
                 @joaohonorio.adv
