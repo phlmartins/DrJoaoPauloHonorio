@@ -450,7 +450,7 @@ function ContactForm() {
             onChange={handlePhoneChange}
             autoComplete="tel"
             inputMode="numeric"
-            placeholder="(62) 9 9999-8989"
+            placeholder="(62) 9 9999-9999"
             maxLength={16}
           />
         </label>

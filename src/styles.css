@@ -690,6 +690,12 @@ ul, ol { list-style: none; }
   transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
+.field input::placeholder,
+.field textarea::placeholder {
+  color: color-mix(in srgb, var(--grafite) 28%, transparent);
+  opacity: 1;
+}
+
 .field input:focus,
 .field textarea:focus {
   outline: none;
