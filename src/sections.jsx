@@ -22,6 +22,10 @@ const INSTAGRAM_POST_URL = 'https://www.instagram.com/p/DZIpksPJvR9/';
 const LOGO_MARK_SRC = '/assets/logo-monogram.png';
 const CONTACT_EMAIL = 'contato@jphonorio.adv.br';
 const CONTACT_API = import.meta.env.VITE_CONTACT_API_URL ?? '';
+const MAPS_PLACE_URL =
+  'https://www.google.com/maps?cid=17084261293771268630';
+const MAPS_EMBED_URL =
+  'https://www.google.com/maps?cid=17084261293771268630&hl=pt-BR&z=16&output=embed';
 
 const NAV_LINKS = [
   { href: '#top', label: 'Início' },
@@ -588,7 +592,7 @@ function Contact() {
             </a>
           </li>
           <li>
-            <a href="https://maps.google.com/?q=Avenida+Bernardo+Say%C3%A3o+6324+Centro+Ceres+GO" target="_blank" rel="noopener noreferrer">
+            <a href={MAPS_PLACE_URL} target="_blank" rel="noopener noreferrer">
               <IconPin />
               <span>
                 <strong>Endereço</strong>
@@ -625,7 +629,7 @@ function MapSection() {
           </p>
           <a
             className="btn btn--outline"
-            href="https://maps.google.com/?q=Avenida+Bernardo+Say%C3%A3o+6324+Centro+Ceres+GO"
+            href={MAPS_PLACE_URL}
             target="_blank"
             rel="noopener noreferrer"
           >
@@ -633,11 +637,12 @@ function MapSection() {
           </a>
         </div>
         <iframe
-          title="Mapa — Escritório Dr. João Paulo Honório"
+          title="Mapa — João Paulo Honorio Consultoria Jurídica"
           className="map-panel__frame"
-          src="https://maps.google.com/maps?q=Avenida%20Bernardo%20Say%C3%A3o%206324%20Centro%20Ceres%20GO&t=&z=15&ie=UTF8&iwloc=&output=embed"
+          src={MAPS_EMBED_URL}
           loading="lazy"
           referrerPolicy="no-referrer-when-downgrade"
+          allowFullScreen
         />
       </div>
     </section>
